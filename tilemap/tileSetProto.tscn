@@ -15,16 +15,17 @@ extents = Vector2( 15.858, 16.0439 )
 [node name="sand" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 165, 99, 32, 32 )
+region_rect = Rect2( 166, 100, 32, 32 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="sand"]
+visible = false
 navpoly = SubResource( 1 )
 
 [node name="stone" type="Sprite" parent="."]
 position = Vector2( 48, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 33, 132, 32, 32 )
+region_rect = Rect2( 34, 133, 32, 32 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="stone"]
 
