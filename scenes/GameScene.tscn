@@ -1,58 +1,65 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/GameScene.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Super-Speedway-FLAT-wpcf_1024x582.jpg" type="Texture" id=2]
-[ext_resource path="res://scenes/BaseVehicle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/CarStats.tscn" type="PackedScene" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 499, 37.455 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 26.8503, 271.02 )
+[ext_resource path="res://tilemap/TileSceneProto.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/CarStats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/PlayerVehicle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/CPUVehicle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Waypoint.tscn" type="PackedScene" id=6]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="DummyTrack" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.388235 )
-position = Vector2( 478.423, 267 )
-scale = Vector2( 1.1395, 1.14777 )
-texture = ExtResource( 2 )
+[node name="Navigation2D" type="Navigation2D" parent="."]
 
-[node name="BaseVehicle" parent="." instance=ExtResource( 3 )]
-position = Vector2( 460, 69 )
-gravity_scale = 0.0
-rotation_speed = 1250.0
+[node name="Node2D" parent="Navigation2D" instance=ExtResource( 2 )]
 
-[node name="InvisibleBarriers" type="Node2D" parent="."]
+[node name="CarStats" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 575.831, 271.64 )
 
-[node name="BarrierTop" type="StaticBody2D" parent="InvisibleBarriers"]
-position = Vector2( 85, 73 )
+[node name="PlayerVehicle" parent="." instance=ExtResource( 4 )]
+position = Vector2( 658.153, 96.6365 )
+collision_mask = 1
+id = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleBarriers/BarrierTop"]
-position = Vector2( 396, -111 )
-shape = SubResource( 1 )
+[node name="CPUVehicle" parent="." instance=ExtResource( 5 )]
+position = Vector2( 657.876, 127.331 )
+collision_mask = 1
+id = 3
+acceleration = 10000
+forward_power_max = 15000
+rotation_speed = 1750.0
+seek_distance = 65
 
-[node name="BarrierBottom" type="StaticBody2D" parent="InvisibleBarriers"]
-position = Vector2( 85, 73 )
+[node name="waypoints" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleBarriers/BarrierBottom"]
-position = Vector2( 397, 504 )
-shape = SubResource( 1 )
+[node name="Area2D_1" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 783.017, 109.586 )
+area_id = 1
 
-[node name="BarrierSideLeft" type="StaticBody2D" parent="InvisibleBarriers"]
-position = Vector2( 123.15, 189.02 )
+[node name="Area2D_2" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 865.135, 382.192 )
+area_id = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleBarriers/BarrierSideLeft"]
-position = Vector2( -151, 82 )
-shape = SubResource( 2 )
+[node name="Area2D_3" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 238.33, 462.488 )
+area_id = 3
 
-[node name="BarrierSideRight" type="StaticBody2D" parent="InvisibleBarriers"]
-position = Vector2( 123.15, 189.02 )
+[node name="Area2D_4" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 96.8616, 223.59 )
+area_id = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleBarriers/BarrierSideRight"]
-position = Vector2( 866, 83 )
-shape = SubResource( 2 )
+[node name="Area2D_5" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 206.075, 109.827 )
+area_id = 5
 
-[node name="CarStats" parent="." instance=ExtResource( 4 )]
+[node name="Area2D_6" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 384.701, 224.97 )
+area_id = 6
+
+[node name="Area2D_7" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 575.847, 129.456 )
+area_id = 7
+
+[node name="target_container" type="Node2D" parent="."]

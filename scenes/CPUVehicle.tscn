@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/BaseVehicle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/CPUVehicle.gd" type="Script" id=2]
+
+[node name="CPUVehicle" instance=ExtResource( 1 )]
+modulate = Color( 0.305882, 0.396078, 0.976471, 1 )
+script = ExtResource( 2 )
+acceleration = 8000
+forward_power_max = 10000
+rotation_speed = 1100.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false

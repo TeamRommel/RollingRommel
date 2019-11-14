@@ -4,15 +4,18 @@
 [ext_resource path="res://sprites/vehicles/tankBody_green_outline.png" type="Texture" id=2]
 [ext_resource path="res://sprites/vehicles/tankGreen_barrel2_outline.png" type="Texture" id=3]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.15
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 12.6914
 height = 1.05963
 
 [node name="BaseVehicle" type="RigidBody2D"]
+collision_mask = 7
 mass = 2.04082
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
 angular_damp = 2.5
 script = ExtResource( 1 )
 acceleration = 10000
@@ -32,4 +35,4 @@ texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 2 )
