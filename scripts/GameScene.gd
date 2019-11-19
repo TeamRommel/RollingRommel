@@ -6,6 +6,8 @@ onready var cpu = $CPUVehicle
 onready var navigation = $Navigation2D
 onready var target_container = get_node("target_container")
 onready var waypoints = get_node("waypoints").get_children()
+onready var cpu_label = $CPU_Label
+onready var player_label = $Player_Label
 
 var target = load("res://scenes/target.tscn")
 
@@ -20,7 +22,9 @@ func _ready():
 
 func _process(delta):
 	# Debug. Draw AI waypoints
-	draw_tracks()
+	#draw_tracks()
+	draw_labels()
+	pass
 
 func connect_to_waypoints():
 	for i in waypoints.size():
@@ -30,6 +34,10 @@ func connect_to_waypoints():
 func check_laps(body, area):
 	print("Body ", body, " entered area ", area)
 
+func draw_labels():
+	cpu_label.rect_position = cpu.position + Vector2(-10, -30)
+	player_label.rect_position = player.position + Vector2(-10, -30)
+
 func draw_tracks():
 	# Clear previous tracks
 	for child in target_container.get_children():
@@ -38,7 +46,6 @@ func draw_tracks():
 
 	# Draw new tracks
 	for i in cpu.path.size():
-		if i > 0:
-			var trgt = target.instance()
-			trgt.position = cpu.path[i]
-			target_container.add_child(trgt)
+		var trgt = target.instance()
+		trgt.position = cpu.path[i]
+		target_container.add_child(trgt)

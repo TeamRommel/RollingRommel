@@ -10,5 +10,44 @@ acceleration = 8000
 forward_power_max = 10000
 rotation_speed = 1100.0
 
-[node name="CollisionShape2D" parent="." index="2"]
-visible = false
+[node name="RayCast2D_RF" type="RayCast2D" parent="CollisionShape2D" index="0"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 200, 100 )
+collision_mask = 2
+
+[node name="RayCast2D_LF" type="RayCast2D" parent="CollisionShape2D" index="1"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 200, -100 )
+collision_mask = 2
+
+[node name="RayCast2D_RF_Long" type="RayCast2D" parent="CollisionShape2D" index="2"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 250, 50 )
+collision_mask = 2
+
+[node name="RayCast2D_LF_Long" type="RayCast2D" parent="CollisionShape2D" index="3"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 250, -50 )
+collision_mask = 2
+
+[node name="RayCast2D_Front" type="RayCast2D" parent="CollisionShape2D" index="4"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 300, 0 )
+collision_mask = 2
+
+[node name="RayCast2D_R_Side" type="RayCast2D" parent="CollisionShape2D" index="5"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 2
+
+[node name="RayCast2D_L_Side" type="RayCast2D" parent="CollisionShape2D" index="6"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, -100 )
+collision_mask = 2

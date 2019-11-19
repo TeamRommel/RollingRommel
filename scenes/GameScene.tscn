@@ -19,47 +19,73 @@ visible = false
 position = Vector2( 575.831, 271.64 )
 
 [node name="PlayerVehicle" parent="." instance=ExtResource( 4 )]
-position = Vector2( 658.153, 96.6365 )
+position = Vector2( 672.855, 66.4977 )
 collision_mask = 1
 id = 1
+slip_factor = 0.98
+friction_factor = 0.9
 
 [node name="CPUVehicle" parent="." instance=ExtResource( 5 )]
-position = Vector2( 657.876, 127.331 )
+position = Vector2( 671.108, 106.013 )
 collision_mask = 1
 id = 3
 acceleration = 10000
-forward_power_max = 15000
+forward_power_max = 14000
 rotation_speed = 1750.0
+slip_factor = 0.98
+friction_factor = 0.9
+is_cpu = true
+safe_dist_to_wall = 250
 seek_distance = 65
+min_dist_to_wall = 150.0
 
 [node name="waypoints" type="Node2D" parent="."]
 
 [node name="Area2D_1" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 783.017, 109.586 )
-area_id = 1
+position = Vector2( 801.963, 82.5633 )
 
 [node name="Area2D_2" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 865.135, 382.192 )
-area_id = 2
+position = Vector2( 898.573, 325.605 )
+area_id = 1
 
 [node name="Area2D_3" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 238.33, 462.488 )
-area_id = 3
+position = Vector2( 220.688, 453.667 )
+area_id = 2
 
 [node name="Area2D_4" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 96.8616, 223.59 )
-area_id = 4
+position = Vector2( 80.676, 170.737 )
+area_id = 3
 
 [node name="Area2D_5" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 206.075, 109.827 )
-area_id = 5
+position = Vector2( 183.598, 91.3671 )
+area_id = 4
 
 [node name="Area2D_6" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 384.701, 224.97 )
+position = Vector2( 321.249, 150.241 )
+area_id = 5
+
+[node name="Area2D_8" parent="waypoints" instance=ExtResource( 6 )]
+position = Vector2( 450.03, 227.175 )
 area_id = 6
 
 [node name="Area2D_7" parent="waypoints" instance=ExtResource( 6 )]
-position = Vector2( 575.847, 129.456 )
+position = Vector2( 578.787, 113.284 )
 area_id = 7
 
 [node name="target_container" type="Node2D" parent="."]
+
+[node name="CPU_Label" type="RichTextLabel" parent="."]
+margin_left = 658.643
+margin_top = 79.39
+margin_right = 698.643
+margin_bottom = 119.39
+custom_colors/default_color = Color( 0.423529, 0.0196078, 0.0196078, 1 )
+text = "CPU"
+
+[node name="Player_Label" type="RichTextLabel" parent="."]
+margin_left = 663.788
+margin_top = 38.9599
+margin_right = 703.788
+margin_bottom = 78.9599
+custom_colors/default_color = Color( 0.423529, 0.0196078, 0.0196078, 1 )
+text = "P1"
