@@ -1,22 +1,34 @@
 extends "res://scripts/BaseVehicle.gd"
 
-var nav = null setget set_nav
-var goal = Vector2() setget set_goal
-var forward_dir = Vector2()
-var target_dir = Vector2()
+# Navigation decisions
 var can_go_right: bool = true
 var should_go_right: bool = false
+var must_go_right: bool = false
 var can_go_left: bool = true
 var should_go_left: bool = false
 var must_go_left: bool = false
-var must_go_right: bool = false
-var must_turn: bool = false
-export var safe_dist_to_wall = 150
-var angle_between = 0
+var must_brake: bool = false
 
-export var seek_distance = 75
+# Navigation decision related limits
+export (float) var must_brake_dist_forward = 100
+export (float) var must_turn_dist_forward = 200
+export (int) var safe_dist_to_wall = 150
+export (int) var seek_distance = 100
+export (int) var ray_side_long = 205
+export (int) var ray_side_mid = 170
+export (int) var ray_side_short = 100
 
-export (float) var min_dist_to_wall = 100
+# Navigation related objects and values
+var nav: Navigation2D = null setget set_nav
+var goal: Vector2 = Vector2() setget set_goal
+var forward_dir: Vector2 = Vector2()
+var target_dir: Vector2 = Vector2()
+var angle_between: float = 0
+var path
+var trackpoints setget set_trackpoints
+var current_trackpoint: int = 0
+
+# Navigation raycasts
 onready var ray_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_Front")
 onready var ray_r_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF")
 onready var ray_r_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF_Long")
@@ -25,18 +37,15 @@ onready var ray_l_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF")
 onready var ray_l_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF_Long")
 onready var ray_l_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_L_Side")
 
-var path
-var trackpoints setget set_trackpoints
-var current_trackpoint = 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_cpu = true
-	
+
+# Store current track's trackpoints
 func set_trackpoints(new_trackpoints):
 	trackpoints = new_trackpoints
 
-# Set target to player
+# Set target to current trackpoint
 func set_goal(new_goal):
 	goal = new_goal
 	if (nav):
@@ -47,12 +56,13 @@ func set_nav(new_nav):
 	nav = new_nav
 	update_path()
 
-# Update path if player position changes
+# Update path if target trackpoint changes
 func update_path():
 	path = nav.get_simple_path(position, goal, true)
 	if (path.size() == 0):
 		pass
 
+# Call update in order to enable _draw function
 func _process(delta):
 	update()
 
@@ -64,11 +74,13 @@ func _draw():
 	
 
 func get_input(delta):
+	# Check raycasts to define possible movement directions
 	check_available_movement()
+
 	# Start each frame with zero steering
 	rotation_dir = 0
 
-	# If there's still path positions to go until next waypoint...
+	# If there's still path positions to go until next trackpoint...
 	if (path.size() > 0):
 
 		# Check distance to the current destination point
@@ -98,94 +110,91 @@ func get_input(delta):
 		# Check the angle between target dir and forward direction
 		angle_between = forward_dir.angle_to(target_dir) * (180/PI)
 
-		# Choose where to turn
+		# Choose where to turn in normal situation
 		if angle_between < -5 and can_go_left:
 			rotation_dir = -1
 		elif angle_between > 5 and can_go_right:
 			rotation_dir = 1
 
-		if must_go_right or should_go_right:
+		# Choose where to turn when heading into a wall
+		if must_go_right:
 			rotation_dir = 1
-		if must_go_left or should_go_left:
+		if must_go_left:
 			rotation_dir = -1
-
 
 		# Put the pedal to the metal
 		if (engine_power <= forward_power_max):
 			engine_power += acceleration * delta
 		else:
 			engine_power = forward_power_max
-		
+
+		# What to do if target is lost after, for instance, hitting a wall
 		if abs(angle_between) > 75 and abs(angle_between) < 160:
-			engine_power = engine_power * 0
-			if angle_between < -5 and can_go_left:
+			# If facing a wall and not moving forward, stop.
+			if get_linear_velocity().length() < 1:
+				engine_power = engine_power * 0
+			
+			# Choose the better direction to turn to.
+			if angle_between < -5 and (can_go_left or should_go_left):
 				rotation_dir = -1
-			elif angle_between > 5 and can_go_right:
+			elif angle_between > 5 and (can_go_right or should_go_right):
 				rotation_dir = 1
 
-
-
 func check_available_movement():
-	# Assume we can move
+	# Assume we can turn
 	can_go_right = true
 	can_go_left = true
+
 	should_go_left = false
 	should_go_right = false
+
 	must_go_left = false
 	must_go_right = false
-	#can_go_forward = true
-	#can_go_backward = true
-	var right_cumulative = 0
-	var left_cumulative = 0
-
+	must_brake = false
 	
+	# Use cumulative values to decide which way is safe to turn
+	var right_cumulative = ray_side_long + ray_side_mid + ray_side_short
+	var left_cumulative = ray_side_long + ray_side_mid + ray_side_short
+
+	# Check distances on left
 	if ray_l_front.is_colliding():
-		left_cumulative += position.distance_to(ray_l_front.get_collision_point())
-	else:
-		left_cumulative += 168
+		left_cumulative -= ray_side_mid - position.distance_to(ray_l_front.get_collision_point())
 	if ray_l_front_long.is_colliding():
-		left_cumulative += position.distance_to(ray_l_front_long.get_collision_point())
-	else:
-		left_cumulative += 205
+		left_cumulative -= ray_side_long - position.distance_to(ray_l_front_long.get_collision_point())
 	if ray_l_side.is_colliding():
-		left_cumulative += position.distance_to(ray_l_side.get_collision_point())
-	else:
-		left_cumulative += 100
-		
-	if left_cumulative < min_dist_to_wall:
-		should_go_right = true
+		left_cumulative -= ray_side_short - position.distance_to(ray_l_side.get_collision_point())
+
 	if left_cumulative > safe_dist_to_wall:
 		can_go_left = true
 
-
+	# Check distances on right
 	if ray_r_front.is_colliding():
-		right_cumulative += position.distance_to(ray_r_front.get_collision_point())
-	else:
-		right_cumulative += 168
+		right_cumulative -= ray_side_mid - position.distance_to(ray_r_front.get_collision_point())
 	if ray_r_front_long.is_colliding():
-		right_cumulative += position.distance_to(ray_r_front_long.get_collision_point())
-	else:
-		right_cumulative += 205
+		right_cumulative -= ray_side_long - position.distance_to(ray_r_front_long.get_collision_point())
 	if ray_r_side.is_colliding():
-		right_cumulative += position.distance_to(ray_r_side.get_collision_point())
-	else:
-		right_cumulative += 100
+		right_cumulative -= ray_side_short - position.distance_to(ray_r_side.get_collision_point())
 
-	if right_cumulative < min_dist_to_wall:
-		should_go_left = true
 	if right_cumulative > safe_dist_to_wall:
 		can_go_right = true
+	
+	# Which side is better
+	if right_cumulative > left_cumulative:
+		should_go_right = true
+	else:
+		should_go_left = true
 
-
-	#print("RightC: ", right_cumulative, " LeftC: ", left_cumulative)
-
+	# Are we about to hit the wall?
 	if ray_front.is_colliding():
 		var front_dist = position.distance_to(ray_front.get_collision_point())
-		if front_dist < 200:
+		if front_dist < must_turn_dist_forward:
 			if right_cumulative > left_cumulative:
 				must_go_right = true
 			elif left_cumulative > right_cumulative:
 				must_go_left = true
+		elif front_dist < must_brake_dist_forward:
+			must_brake = true
 
-	
-
+# Trigger path update once every second
+func _on_path_timer_timeout():
+	update_path()

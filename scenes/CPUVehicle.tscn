@@ -51,3 +51,7 @@ rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, -100 )
 collision_mask = 2
+
+[node name="Path_Timer" type="Timer" parent="." index="3"]
+autostart = true
+[connection signal="timeout" from="Path_Timer" to="." method="_on_path_timer_timeout"]

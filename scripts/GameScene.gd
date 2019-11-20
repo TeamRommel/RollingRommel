@@ -23,6 +23,7 @@ func _ready():
 func _process(delta):
 	# Debug. Draw AI waypoints
 	#draw_tracks()
+	# Draw labels on top of vehicles
 	draw_labels()
 	pass
 

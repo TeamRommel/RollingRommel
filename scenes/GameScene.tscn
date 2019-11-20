@@ -26,18 +26,18 @@ slip_factor = 0.98
 friction_factor = 0.9
 
 [node name="CPUVehicle" parent="." instance=ExtResource( 5 )]
-position = Vector2( 671.108, 106.013 )
+position = Vector2( 673.108, 107.013 )
 collision_mask = 1
 id = 3
 acceleration = 10000
-forward_power_max = 14000
+forward_power_max = 14500
 rotation_speed = 1750.0
 slip_factor = 0.98
 friction_factor = 0.9
 is_cpu = true
-safe_dist_to_wall = 250
-seek_distance = 65
 min_dist_to_wall = 150.0
+safe_dist_to_wall = 275
+seek_distance = 65
 
 [node name="waypoints" type="Node2D" parent="."]
 
@@ -75,10 +75,10 @@ area_id = 7
 [node name="target_container" type="Node2D" parent="."]
 
 [node name="CPU_Label" type="RichTextLabel" parent="."]
-margin_left = 658.643
-margin_top = 79.39
-margin_right = 698.643
-margin_bottom = 119.39
+margin_left = 659.0
+margin_top = 79.0
+margin_right = 699.0
+margin_bottom = 97.0
 custom_colors/default_color = Color( 0.423529, 0.0196078, 0.0196078, 1 )
 text = "CPU"
 
