@@ -10,6 +10,12 @@ acceleration = 8000
 forward_power_max = 10000
 rotation_speed = 1100.0
 
+[node name="TankShadow" parent="." index="0"]
+position = Vector2( 0, 0 )
+
+[node name="Path_Timer" type="Timer" parent="." index="3"]
+autostart = true
+
 [node name="RayCast2D_RF" type="RayCast2D" parent="CollisionShape2D" index="0"]
 rotation = -1.5708
 enabled = true
@@ -38,7 +44,7 @@ collision_mask = 2
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 300, 0 )
-collision_mask = 2
+collision_mask = 3
 
 [node name="RayCast2D_R_Side" type="RayCast2D" parent="CollisionShape2D" index="5"]
 rotation = -1.5708
@@ -51,7 +57,4 @@ rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, -100 )
 collision_mask = 2
-
-[node name="Path_Timer" type="Timer" parent="." index="3"]
-autostart = true
 [connection signal="timeout" from="Path_Timer" to="." method="_on_path_timer_timeout"]

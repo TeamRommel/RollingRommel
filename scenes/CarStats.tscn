@@ -2,6 +2,11 @@
 
 [node name="CarStats" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 313.0
+margin_bottom = 109.0
+color = Color( 0.356863, 0.352941, 0.266667, 1 )
+
 [node name="EnginePower_Label" type="Label" parent="."]
 margin_left = 5.04337
 margin_top = 5.7028
@@ -16,8 +21,7 @@ margin_right = 245.0
 margin_bottom = 19.9783
 max_value = 25000.0
 step = 10.0
-value = 13500.0
-ticks_on_borders = false
+value = 14500.0
 
 [node name="EnginePowerValue_Label" type="Label" parent="."]
 margin_left = 250.0
@@ -42,7 +46,8 @@ margin_top = 24.6594
 margin_right = 245.0
 margin_bottom = 40.6594
 max_value = 20000.0
-value = 8000.0
+value = 10000.0
+ticks_on_borders = true
 
 [node name="AccelerationValue_Label" type="Label" parent="."]
 margin_left = 250.0
@@ -66,8 +71,7 @@ margin_bottom = 100.319
 min_value = 0.9
 max_value = 0.995
 step = 0.001
-value = 0.975
-ticks_on_borders = false
+value = 0.98
 
 [node name="TractionValue_Label" type="Label" parent="."]
 margin_left = 250.0
@@ -90,8 +94,8 @@ margin_right = 245.0
 margin_bottom = 80.3189
 min_value = 0.5
 max_value = 1.0
-step = 0.001
-value = 0.95
+step = 0.01
+value = 0.9
 
 [node name="FrictionValue_Label" type="Label" parent="."]
 margin_left = 250.0
@@ -115,8 +119,7 @@ margin_bottom = 60.3189
 min_value = 500.0
 max_value = 2000.0
 step = 10.0
-value = 1250.0
-ticks_on_borders = false
+value = 1750.0
 
 [node name="TurnSpeedValue_Label" type="Label" parent="."]
 margin_left = 250.0

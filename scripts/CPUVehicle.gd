@@ -11,9 +11,9 @@ var must_brake: bool = false
 
 # Navigation decision related limits
 export (float) var must_brake_dist_forward = 100
-export (float) var must_turn_dist_forward = 200
+export (float) var must_turn_dist_forward = 250
 export (int) var safe_dist_to_wall = 150
-export (int) var seek_distance = 100
+export (int) var seek_distance = 75
 export (int) var ray_side_long = 205
 export (int) var ray_side_mid = 170
 export (int) var ray_side_short = 100
@@ -25,8 +25,8 @@ var forward_dir: Vector2 = Vector2()
 var target_dir: Vector2 = Vector2()
 var angle_between: float = 0
 var path
-var trackpoints setget set_trackpoints
-var current_trackpoint: int = 0
+var waypoints setget set_waypoints
+var current_waypoint: int = 0
 
 # Navigation raycasts
 onready var ray_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_Front")
@@ -42,8 +42,8 @@ func _ready():
 	is_cpu = true
 
 # Store current track's trackpoints
-func set_trackpoints(new_trackpoints):
-	trackpoints = new_trackpoints
+func set_waypoints(new_waypoints):
+	waypoints = new_waypoints
 
 # Set target to current trackpoint
 func set_goal(new_goal):
@@ -92,14 +92,14 @@ func get_input(delta):
 
 			# If the path size is 0, we've reached the current destination. Time to move on.
 			if (path.size() == 0):
-				if (trackpoints != null):
-					if current_trackpoint +1 < trackpoints.size():
-						current_trackpoint +=1
-						set_goal(trackpoints[current_trackpoint].position)
+				if (waypoints != null):
+					if current_waypoint +1 < waypoints.size():
+						current_waypoint +=1
+						set_goal(waypoints[current_waypoint].position)
 					else:
 						# If we've gone through all waypoints, start next lap.
-						current_trackpoint = 0
-						set_goal(trackpoints[current_trackpoint].position)
+						current_waypoint = 0
+						set_goal(waypoints[current_waypoint].position)
 
 			
 		# Check where our nose is pointing. Forward direction (Vector2.RIGHT) is in relation to the object's orientation
@@ -186,6 +186,7 @@ func check_available_movement():
 
 	# Are we about to hit the wall?
 	if ray_front.is_colliding():
+		
 		var front_dist = position.distance_to(ray_front.get_collision_point())
 		if front_dist < must_turn_dist_forward:
 			if right_cumulative > left_cumulative:

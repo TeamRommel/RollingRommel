@@ -19,6 +19,10 @@ config/name="Rolling Rommel"
 run/main_scene="res://scenes/GameScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameSettings="*res://scripts/GameSettings.gd"
+
 [display]
 
 window/size/width=960

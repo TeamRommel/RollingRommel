@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/BaseVehicle.gd" type="Script" id=1]
-[ext_resource path="res://sprites/vehicles/tankBody_green_outline.png" type="Texture" id=2]
-[ext_resource path="res://sprites/vehicles/tankGreen_barrel2_outline.png" type="Texture" id=3]
+[ext_resource path="res://sprites/vehicles/tankBody_green_outline_shadow.png" type="Texture" id=2]
+[ext_resource path="res://sprites/vehicles/tankBody_green_outline.png" type="Texture" id=3]
+[ext_resource path="res://sprites/vehicles/tankGreen_barrel2_outline.png" type="Texture" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.15
@@ -22,17 +23,23 @@ acceleration = 10000
 forward_power_max = 15000
 rotation_speed = 1750.0
 
+[node name="TankShadow" type="Sprite" parent="."]
+position = Vector2( 1.5, 1.5 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
 [node name="TankBody" type="Sprite" parent="."]
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Turret" type="Sprite" parent="."]
 position = Vector2( 10, 0 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource( 2 )

@@ -15,6 +15,9 @@ export (float) var friction_factor = 0.95
 var rotation_dir = 0
 var engine_power = 0
 
+# Vehicle shadow
+onready var shadow = $TankShadow
+
 # Booleans
 #export (bool) var debug = false
 export (bool) var is_cpu = false
@@ -23,10 +26,14 @@ export (bool) var is_cpu = false
 func _ready():
 	set_physics_process(true)
 
-func get_input(delta):
+func get_input(delta) -> void:
 	pass
 	
+func offset_shadow() -> void:
+	shadow.position = Vector2(1.5,1.5).rotated(-rotation)
+
 func _physics_process(delta):
+	offset_shadow()
 	get_input(delta)
 	# Calculate forward and sideways velocity. These are used to calculate linear velocity.
 	var forwards_velocity = Vector2.RIGHT.rotated(rotation) * linear_velocity.dot(Vector2.RIGHT.rotated(rotation)) ;
