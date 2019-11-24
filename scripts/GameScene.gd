@@ -43,11 +43,11 @@ func init_players():
 		if player.is_player_cpu():
 			var plr = cpu_car.instance()
 			if (player.get_player_id() == 2):
-				plr.position = Vector2(670, 110)
+				plr.position = Vector2(700, 110)
 			elif (player.get_player_id() == 3):
-				plr.position = Vector2(620, 110)
+				plr.position = Vector2(650, 110)
 			else:
-				plr.position = Vector2(620, 60)
+				plr.position = Vector2(650, 60)
 			plr.id = player.get_player_id()
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
@@ -58,7 +58,7 @@ func init_players():
 		else:
 			var plr = player_car.instance()
 			plr.car_stats = car_stats
-			plr.position = Vector2(670, 60)
+			plr.position = Vector2(700, 60)
 			plr.id = player.get_player_id()
 			plr.waypoints = waypoints
 			screen_players.append(plr)
@@ -67,7 +67,7 @@ func init_players():
 
 func _process(delta):
 	# Debug. Draw AI waypoints
-	draw_tracks()
+	#draw_tracks()
 	# Draw labels on top of vehicles
 	draw_labels()
 	pass
