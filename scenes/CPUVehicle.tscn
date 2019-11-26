@@ -6,9 +6,9 @@
 [node name="CPUVehicle" instance=ExtResource( 1 )]
 modulate = Color( 0.305882, 0.396078, 0.976471, 1 )
 script = ExtResource( 2 )
-acceleration = 8000
 forward_power_max = 10000
-rotation_speed = 1100.0
+rotation_speed = 1000.0
+seek_distance = 100
 
 [node name="TankShadow" parent="." index="0"]
 position = Vector2( 0, 0 )

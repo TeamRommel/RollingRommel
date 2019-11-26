@@ -42,23 +42,26 @@ func init_players():
 		
 		if player.is_player_cpu():
 			var plr = cpu_car.instance()
+			plr.rotation_degrees = 180
 			if (player.get_player_id() == 2):
-				plr.position = Vector2(700, 110)
+				plr.position = Vector2(470, 330)
 			elif (player.get_player_id() == 3):
-				plr.position = Vector2(650, 110)
+				plr.position = Vector2(520, 330)
 			else:
-				plr.position = Vector2(650, 60)
+				plr.position = Vector2(470, 360)
 			plr.id = player.get_player_id()
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
 			plr.waypoints = waypoints
+			plr.must_turn_dist_forward = player.must_turn_dist_forward
 			screen_players.append(plr)
 			lbl.rect_position = plr.position + Vector2(-10, -30)
 			add_child(plr)
 		else:
 			var plr = player_car.instance()
+			plr.rotation_degrees = 180
 			plr.car_stats = car_stats
-			plr.position = Vector2(700, 60)
+			plr.position = Vector2(520, 360)
 			plr.id = player.get_player_id()
 			plr.waypoints = waypoints
 			screen_players.append(plr)

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://tilemap/track1Scene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/CarStats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Waypoint.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/PlayerVehicle.tscn" type="PackedScene" id=5]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,45 +13,36 @@ script = ExtResource( 1 )
 [node name="Node2D" parent="Navigation2D" instance=ExtResource( 2 )]
 
 [node name="CarStats" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 511.831, 264.64 )
+position = Vector2( 385.817, 10.0671 )
+scale = Vector2( 0.7, 0.7 )
 
 [node name="waypoints" type="Node2D" parent="."]
 
 [node name="Area2D_1" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 819.963, 100.563 )
+area_id = 5
 
 [node name="Area2D_2" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 872.573, 321.605 )
-area_id = 1
+area_id = 6
 
 [node name="Area2D_3" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 220.688, 348.667 )
-area_id = 2
 
 [node name="Area2D_4" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 92.676, 175.737 )
-area_id = 3
+area_id = 1
 
 [node name="Area2D_5" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 264.598, 99.3671 )
-area_id = 4
+area_id = 2
 
 [node name="Area2D_6" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 409.249, 216.241 )
-area_id = 5
+area_id = 3
 
 [node name="Area2D_8" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 631.03, 179.175 )
-area_id = 6
-
-[node name="Area2D_7" parent="waypoints" instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 578.787, 113.284 )
-area_id = 7
+area_id = 4
 
 [node name="target_container" type="Node2D" parent="."]
-
-[node name="PlayerVehicle" parent="." instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 385, 325 )

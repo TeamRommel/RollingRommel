@@ -21,6 +21,7 @@ onready var shadow = $TankShadow
 # Booleans
 #export (bool) var debug = false
 export (bool) var is_cpu = false
+var use_nitro:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,3 +49,6 @@ func _physics_process(delta):
 	set_applied_force(total_force);
 	set_linear_velocity(forwards_velocity + (sideways_velocity * slip_factor))
 	set_applied_torque(rotation_dir * rotation_speed)
+	if (use_nitro):
+		apply_impulse(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 20)
+		use_nitro = false
