@@ -7,20 +7,20 @@ var championship_points: int = 0
 var selected_vehicle: int = 0 setget set_player_vehicle, get_player_vehicle
 var is_cpu: bool = false
 var must_turn_dist_forward = 250
+
+# Car stats
 var acceleration: int = 10000
 var forward_power: int = 10000
 var reverse_power: int = forward_power / -2
-var rotation_speed: int = 1000
+var rotation_speed: int = 750
 var slip_factor: float = 0.975
 var friction_factor: float = 0.975
-
 
 func _init(new_name="ACE", new_id=0, set_cpu=false, forw_turn_dist=250):
 	player_name = new_name
 	player_id = new_id
 	is_cpu = set_cpu
 	must_turn_dist_forward = forw_turn_dist
-	
 
 func set_player_as_cpu() -> void:
 	is_cpu = true

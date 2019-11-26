@@ -1,6 +1,6 @@
 extends Node
 
-var no_of_players: int = 3
+var no_of_players: int = 0
 var no_of_humans: int = 0
 var current_level: int = 0
 var players: Array = []

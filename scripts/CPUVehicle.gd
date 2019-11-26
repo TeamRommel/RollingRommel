@@ -41,6 +41,10 @@ onready var ray_l_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_L_Side"
 func _ready():
 	is_cpu = true
 
+func init_vehicle() -> void:
+	pass
+	
+
 # Store current track's trackpoints
 func set_waypoints(new_waypoints):
 	waypoints = new_waypoints

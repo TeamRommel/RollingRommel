@@ -5,9 +5,10 @@ onready var car_stats = $CarStats
 #onready var cpu = $CPUVehicle
 onready var navigation = $Navigation2D
 onready var target_container = get_node("target_container")
+onready var label_container = get_node("label_container")
 onready var waypoints = get_node("waypoints").get_children()
-onready var cpu_label = $CPU_Label
-onready var player_label = $Player_Label
+#onready var cpu_label = $CPU_Label
+#onready var player_label = $Player_Label
 
 # Target sprite, used for drawing debug waypoints
 var target = load("res://scenes/target.tscn")
@@ -38,7 +39,7 @@ func init_players():
 		lbl.text = player.get_player_name()
 		lbl.set("custom_colors/font_color", Color(1,0,0))
 		player_labels.append(lbl)
-		add_child(lbl)
+		label_container.add_child(lbl)
 		
 		if player.is_player_cpu():
 			var plr = cpu_car.instance()
@@ -67,6 +68,7 @@ func init_players():
 			screen_players.append(plr)
 			lbl.rect_position = plr.position + Vector2(-10, -30)
 			add_child(plr)
+		
 
 func _process(delta):
 	# Debug. Draw AI waypoints
@@ -80,7 +82,8 @@ func connect_to_waypoints():
 		waypoints[i].connect("body_entered_waypoint", self, "check_laps")
 
 func check_laps(body, area):
-	print("Body ", body, " entered area ", area)
+	pass
+	#print("Body ", body, " entered area ", area)
 
 func draw_labels():
 	for i in player_labels.size():

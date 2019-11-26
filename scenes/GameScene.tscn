@@ -18,16 +18,8 @@ scale = Vector2( 0.7, 0.7 )
 
 [node name="waypoints" type="Node2D" parent="."]
 
-[node name="Area2D_1" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 819.963, 100.563 )
-area_id = 5
-
-[node name="Area2D_2" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 872.573, 321.605 )
-area_id = 6
-
 [node name="Area2D_3" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 220.688, 348.667 )
+position = Vector2( 154.499, 316.845 )
 
 [node name="Area2D_4" parent="waypoints" instance=ExtResource( 4 )]
 position = Vector2( 92.676, 175.737 )
@@ -45,4 +37,15 @@ area_id = 3
 position = Vector2( 631.03, 179.175 )
 area_id = 4
 
+[node name="Area2D_1" parent="waypoints" instance=ExtResource( 4 )]
+position = Vector2( 819.963, 100.563 )
+area_id = 5
+
+[node name="Area2D_2" parent="waypoints" instance=ExtResource( 4 )]
+position = Vector2( 872.573, 321.605 )
+area_id = 6
+
 [node name="target_container" type="Node2D" parent="."]
+
+[node name="label_container" type="Node2D" parent="."]
+z_index = 20

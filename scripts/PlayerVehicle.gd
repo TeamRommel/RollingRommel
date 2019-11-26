@@ -4,7 +4,6 @@ var car_stats
 var waypoints
 var waypoint_counter = 0
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -53,9 +52,12 @@ func get_input(delta):
 	# If neither up nor down is pressed, kill engine.
 	if not Input.is_action_pressed('up_%s' % id) and not Input.is_action_pressed('down_%s' % id):
 		engine_power = 0
+	
+	# Apply nitro
 	if Input.is_action_pressed('action_%s_1' % id):
-		use_nitro = true
-
+		if can_use_nitro:
+			will_use_nitro = true
+			
 func _on_Area2D_2_body_entered(body):
 	waypoint_counter += 1
 
