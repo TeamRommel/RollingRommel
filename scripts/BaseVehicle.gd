@@ -4,10 +4,10 @@ extends RigidBody2D
 export (int) var id = 0
 
 # Values that affect handling
-export (int) var acceleration = 8000
+export (int) var acceleration = 10000
 export (int) var forward_power_max = 10000
 export (int) var reverse_power_max = -5000
-export (float) var rotation_speed = 1100
+export (float) var rotation_speed = 1000
 export (float) var slip_factor = 0.975
 export (float) var friction_factor = 0.95
 
@@ -50,5 +50,5 @@ func _physics_process(delta):
 	set_linear_velocity(forwards_velocity + (sideways_velocity * slip_factor))
 	set_applied_torque(rotation_dir * rotation_speed)
 	if (use_nitro):
-		apply_impulse(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 20)
+		apply_impulse(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 15)
 		use_nitro = false

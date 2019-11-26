@@ -12,7 +12,7 @@ var forward_power: int = 10000
 var reverse_power: int = forward_power / -2
 var rotation_speed: int = 1000
 var slip_factor: float = 0.975
-var friction_factor: float = 0.95
+var friction_factor: float = 0.975
 
 
 func _init(new_name="ACE", new_id=0, set_cpu=false, forw_turn_dist=250):

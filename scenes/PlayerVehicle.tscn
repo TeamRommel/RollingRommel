@@ -4,9 +4,10 @@
 [ext_resource path="res://scripts/PlayerVehicle.gd" type="Script" id=2]
 
 [node name="PlayerVehicle" index="0" instance=ExtResource( 1 )]
-contacts_reported = 1
-contact_monitor = true
 script = ExtResource( 2 )
+forward_power_max = 10000
+rotation_speed = 1000.0
+friction_factor = 0.975
 
 [node name="TankShadow" parent="." index="0"]
 position = Vector2( 0, 0 )
