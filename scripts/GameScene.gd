@@ -100,3 +100,4 @@ func draw_tracks():
 		var trgt = target.instance()
 		trgt.position = screen_players[1].path[i]
 		target_container.add_child(trgt)
+    

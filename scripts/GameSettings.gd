@@ -24,5 +24,8 @@ func get_players():
 	
 func add_player(player):
 	players.append(player)
-	
-	
+
+# Player objects created with new() must be manually removed on quit.
+func _exit_tree():
+	for player in players:
+		player.free()
