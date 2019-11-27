@@ -7,6 +7,7 @@ onready var navigation = $Navigation2D
 onready var target_container = get_node("target_container")
 onready var label_container = get_node("label_container")
 onready var waypoints = get_node("waypoints").get_children()
+onready var p1_laps = get_node("p1_laps")
 #onready var cpu_label = $CPU_Label
 #onready var player_label = $Player_Label
 
@@ -14,6 +15,7 @@ onready var waypoints = get_node("waypoints").get_children()
 var target = load("res://scenes/target.tscn")
 var player_car = preload("res://scenes/PlayerVehicle.tscn")
 var cpu_car = preload("res://scenes/CPUVehicle.tscn")
+var players = []
 var screen_players = []
 var player_labels = []
 
@@ -29,11 +31,12 @@ func _ready():
 	#player.waypoints = waypoints
 	#cpu.nav = navigation
 	#cpu.trackpoints = waypoints
+	total_waypoints = waypoints.size()
 	connect_to_waypoints()
 	init_players()
 	
 func init_players():
-	var players = GameSettings.get_players()
+	players = GameSettings.get_players()
 	for player in players:
 		var lbl = Label.new()
 		lbl.text = player.get_player_name()
@@ -57,6 +60,9 @@ func init_players():
 			plr.must_turn_dist_forward = player.must_turn_dist_forward
 			screen_players.append(plr)
 			lbl.rect_position = plr.position + Vector2(-10, -30)
+			player.set_no_of_waypoints(total_waypoints)
+			player.set_no_of_laps(total_laps)
+			player.connect("lap_complete", self, "count_laps")
 			add_child(plr)
 		else:
 			var plr = player_car.instance()
@@ -67,6 +73,9 @@ func init_players():
 			plr.waypoints = waypoints
 			screen_players.append(plr)
 			lbl.rect_position = plr.position + Vector2(-10, -30)
+			player.set_no_of_waypoints(total_waypoints)
+			player.set_no_of_laps(total_laps)
+			player.connect("lap_complete", self, "count_laps")
 			add_child(plr)
 		
 
@@ -82,8 +91,14 @@ func connect_to_waypoints():
 		waypoints[i].connect("body_entered_waypoint", self, "check_laps")
 
 func check_laps(body, area):
-	pass
+	players[body].set_current_waypoint(area)
 	#print("Body ", body, " entered area ", area)
+
+func count_laps(player_id: int, lap_no:int, lap_time: float):
+	print ("Player %s completed a lap" % player_id)
+	if player_id == 0:
+		p1_laps.set_text("Player 1\nLap: %s\nTime: %s" % [lap_no, lap_time])
+
 
 func draw_labels():
 	for i in player_labels.size():

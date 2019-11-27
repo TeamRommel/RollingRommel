@@ -19,33 +19,45 @@ scale = Vector2( 0.7, 0.7 )
 [node name="waypoints" type="Node2D" parent="."]
 
 [node name="Area2D_3" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 154.499, 316.845 )
+position = Vector2( 431.144, 352.57 )
 
 [node name="Area2D_4" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 92.676, 175.737 )
+position = Vector2( 95.2481, 222.893 )
+rotation = 1.5708
 area_id = 1
 
 [node name="Area2D_5" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 264.598, 99.3671 )
+position = Vector2( 244.878, 98.5097 )
 area_id = 2
 
 [node name="Area2D_6" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 409.249, 216.241 )
+position = Vector2( 417.823, 222.243 )
 area_id = 3
 
 [node name="Area2D_8" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 631.03, 179.175 )
+position = Vector2( 637.032, 165.457 )
+rotation = 1.5708
 area_id = 4
 
 [node name="Area2D_1" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 819.963, 100.563 )
+position = Vector2( 777.952, 97.1335 )
 area_id = 5
 
 [node name="Area2D_2" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 872.573, 321.605 )
+position = Vector2( 780.834, 349.041 )
 area_id = 6
 
 [node name="target_container" type="Node2D" parent="."]
 
 [node name="label_container" type="Node2D" parent="."]
 z_index = 20
+
+[node name="p1_laps" type="Label" parent="."]
+margin_left = 13.0
+margin_top = 419.0
+margin_right = 124.0
+margin_bottom = 440.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Player 1
+Lap: 0
+Time: 00.00"
