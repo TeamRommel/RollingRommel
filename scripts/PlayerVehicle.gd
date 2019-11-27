@@ -34,27 +34,27 @@ func get_input(delta):
 	rotation_dir = 0
 
 	# Handle left and right keys. Prep for multiplayer.
-	if Input.is_action_pressed('right_%s' % id):
+	if Input.is_action_pressed('right_%s' % (id + 1)):
 		rotation_dir = 1
-	if Input.is_action_pressed('left_%s' % id):
+	if Input.is_action_pressed('left_%s' % (id + 1)):
 		rotation_dir = -1
 	
 	# Handle up and down keys. Prep for multiplayer.
-	if Input.is_action_pressed('down_%s' % id):
+	if Input.is_action_pressed('down_%s' % (id + 1)):
 		if (engine_power > reverse_power_max):
 			engine_power -= acceleration * delta
-	if Input.is_action_pressed('up_%s'% id):
+	if Input.is_action_pressed('up_%s'% (id + 1)):
 		if (engine_power <= forward_power_max):
 			engine_power += acceleration * delta
 		else:
 			engine_power = forward_power_max
 	
 	# If neither up nor down is pressed, kill engine.
-	if not Input.is_action_pressed('up_%s' % id) and not Input.is_action_pressed('down_%s' % id):
+	if not Input.is_action_pressed('up_%s' % (id + 1)) and not Input.is_action_pressed('down_%s' % (id + 1)):
 		engine_power = 0
 	
 	# Apply nitro
-	if Input.is_action_pressed('action_%s_1' % id):
+	if Input.is_action_pressed('action_%s_1' % (id + 1)):
 		if can_use_nitro:
 			will_use_nitro = true
 			
