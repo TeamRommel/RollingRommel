@@ -14,6 +14,7 @@ var current_waypoint: int = 0
 var completed_laps: int = 0
 var total_laps: int = 0
 var lap_time: float = 0
+var best_lap: float = 0
 var lap_start_time: int = 0
 
 # Car stats
@@ -26,6 +27,7 @@ var friction_factor: float = 0.975
 
 # Signals
 signal lap_complete
+signal race_complete
 
 func _init(new_name="ACE", new_id=0, set_cpu=false, forw_turn_dist=250):
 	player_name = new_name
@@ -67,7 +69,6 @@ func set_no_of_laps(total_laps_in_lvl: int) -> void:
 
 func set_current_waypoint(waypoint_no) -> void:
 	if current_waypoint + 1 == waypoint_no:
-	#	print("passed correct")
 		current_waypoint += 1
 	elif waypoint_no == 0 && current_waypoint + 1 == total_waypoints:
 		current_waypoint = 1
@@ -76,11 +77,13 @@ func set_current_waypoint(waypoint_no) -> void:
 		lap_start_time = OS.get_ticks_msec()
 
 func add_lap() -> void:
-	#print("completed lap")
 	completed_laps += 1
 	lap_time = float(OS.get_ticks_msec() - lap_start_time) / 1000
-	print (lap_time)
+	check_best_lap(lap_time)
 	emit_signal("lap_complete", player_id, completed_laps, lap_time)
 	if completed_laps == total_laps:
-		print("race complete")
+		emit_signal("race_complete", player_id, best_lap)
 
+func check_best_lap(last_lap_time) -> void:
+	if last_lap_time < best_lap:
+		best_lap = lap_start_time

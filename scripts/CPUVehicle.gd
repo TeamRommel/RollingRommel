@@ -145,9 +145,9 @@ func get_input(delta):
 				rotation_dir = 1
 
 func check_available_movement():
-	# Assume we can turn
-	can_go_right = true
-	can_go_left = true
+	# Reset all values
+	can_go_right = false
+	can_go_left = false
 
 	should_go_left = false
 	should_go_right = false
@@ -190,12 +190,11 @@ func check_available_movement():
 
 	# Are we about to hit the wall?
 	if ray_front.is_colliding():
-		
 		var front_dist = position.distance_to(ray_front.get_collision_point())
 		if front_dist < must_turn_dist_forward:
-			if right_cumulative > left_cumulative:
+			if should_go_right:
 				must_go_right = true
-			elif left_cumulative > right_cumulative:
+			else:
 				must_go_left = true
 		elif front_dist < must_brake_dist_forward:
 			must_brake = true
