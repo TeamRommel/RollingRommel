@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if id == 1:
+	if id == 0:
 		check_sliders()
 	
 func check_sliders():
