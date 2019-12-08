@@ -12,7 +12,9 @@ bounce = 0.15
 [sub_resource type="CapsuleShape2D" id=2]
 height = 3.91769
 
-[node name="BaseVehicle" type="RigidBody2D"]
+[node name="BaseVehicle" type="RigidBody2D" groups=[
+"vehicles",
+]]
 collision_mask = 7
 mass = 2.04082
 physics_material_override = SubResource( 1 )

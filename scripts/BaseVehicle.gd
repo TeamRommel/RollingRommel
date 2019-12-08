@@ -11,6 +11,7 @@ export (float) var rotation_speed = 750
 export (float) var slip_factor = 0.975
 export (float) var friction_factor = 0.975
 export (int) var nitro_power = 200
+var slow: bool = false
 
 # Values calculated during runtime
 var rotation_dir: float = 0
@@ -22,6 +23,9 @@ var shadow_offset_pxl: float = 1.5
 
 # Nitro timer
 onready var nitro_timer = $NitroTimer
+
+# Tilemap for position checking
+var tilemap
 
 # Booleans
 #export (bool) var debug = false
@@ -40,8 +44,10 @@ func offset_shadow() -> void:
 	shadow.position = Vector2(shadow_offset_pxl, shadow_offset_pxl).rotated(-rotation)
 
 func _physics_process(delta):
+
 	offset_shadow()
 	get_input(delta)
+	check_position()
 	# Calculate forward and sideways velocity. These are used to calculate linear velocity.
 	var forwards_velocity = Vector2.RIGHT.rotated(rotation) * linear_velocity.dot(Vector2.RIGHT.rotated(rotation)) ;
 	var sideways_velocity = Vector2.UP.rotated(rotation) * linear_velocity.dot(Vector2.UP.rotated(rotation))
@@ -49,7 +55,11 @@ func _physics_process(delta):
 	# Calculate forces
 	var forwards_force = Vector2.RIGHT.rotated(rotation) * engine_power * friction_factor * delta
 	var friction_force = -forwards_velocity * friction_factor
-	var total_force = forwards_force + friction_force
+	var total_force
+	if (slow):
+		total_force = (forwards_force + friction_force) * 0.05
+	else:
+		total_force = forwards_force + friction_force
 
 	# Apply forces and torque
 	set_applied_force(total_force);
@@ -57,6 +67,15 @@ func _physics_process(delta):
 	set_applied_torque(rotation_dir * rotation_speed)
 	if will_use_nitro:
 		use_nitro()
+
+func check_position():
+	slow = false
+	var tile
+	if tilemap != null:
+		tile = tilemap.get_cellv(tilemap.world_to_map(position))
+	if tile == 0:
+		slow = true
+		#print("Slowing down")
 		
 func use_nitro() -> void:
 	can_use_nitro = false

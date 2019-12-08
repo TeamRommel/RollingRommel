@@ -8,6 +8,7 @@ var can_go_left: bool = true
 var should_go_left: bool = false
 var must_go_left: bool = false
 var must_brake: bool = false
+var must_slow_down: bool = false
 
 # Navigation decision related limits
 export (float) var must_brake_dist_forward = 100
@@ -29,13 +30,20 @@ var waypoints setget set_waypoints
 var current_waypoint: int = 0
 
 # Navigation raycasts
-onready var ray_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_Front")
-onready var ray_r_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF")
-onready var ray_r_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF_Long")
-onready var ray_r_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_R_Side")
-onready var ray_l_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF")
-onready var ray_l_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF_Long")
-onready var ray_l_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_L_Side")
+# onready var ray_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_Front")
+# onready var ray_r_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF")
+# onready var ray_r_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF_Long")
+# onready var ray_r_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_R_Side")
+# onready var ray_l_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF")
+# onready var ray_l_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF_Long")
+# onready var ray_l_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_L_Side")
+onready var ray_front: RayCast2D = get_node("RayCast2D_Front")
+onready var ray_r_front: RayCast2D = get_node("RayCast2D_RF")
+onready var ray_r_front_long: RayCast2D = get_node("RayCast2D_RF_Long")
+onready var ray_r_side: RayCast2D = get_node("RayCast2D_R_Side")
+onready var ray_l_front: RayCast2D = get_node("RayCast2D_LF")
+onready var ray_l_front_long: RayCast2D = get_node("RayCast2D_LF_Long")
+onready var ray_l_side: RayCast2D = get_node("RayCast2D_L_Side")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -100,10 +108,12 @@ func get_input(delta):
 					if current_waypoint +1 < waypoints.size():
 						current_waypoint +=1
 						set_goal(waypoints[current_waypoint].position)
+						#print("Target: ", current_waypoint)
 					else:
 						# If we've gone through all waypoints, start next lap.
 						current_waypoint = 0
 						set_goal(waypoints[current_waypoint].position)
+						#print("Target: ", current_waypoint)
 
 			
 		# Check where our nose is pointing. Forward direction (Vector2.RIGHT) is in relation to the object's orientation
@@ -129,11 +139,13 @@ func get_input(delta):
 		# Put the pedal to the metal
 		if (engine_power <= forward_power_max):
 			engine_power += acceleration * delta
+		elif must_slow_down:
+			engine_power = engine_power * 0.9
 		else:
 			engine_power = forward_power_max
 
 		# What to do if target is lost after, for instance, hitting a wall
-		if abs(angle_between) > 75 and abs(angle_between) < 160:
+		if abs(angle_between) > 75 and abs(angle_between) <= 180:
 			# If facing a wall and not moving forward, stop.
 			if get_linear_velocity().length() < 1:
 				engine_power = engine_power * 0
@@ -155,49 +167,94 @@ func check_available_movement():
 	must_go_left = false
 	must_go_right = false
 	must_brake = false
+	must_slow_down = false
 	
 	# Use cumulative values to decide which way is safe to turn
-	var right_cumulative = ray_side_long + ray_side_mid + ray_side_short
-	var left_cumulative = ray_side_long + ray_side_mid + ray_side_short
+	var right_cumulative_wall = ray_side_long + ray_side_mid + ray_side_short
+	var left_cumulative_wall = ray_side_long + ray_side_mid + ray_side_short
+	var right_cumulative_vehicle = 150
+	var left_cumulative_vehicle = 150
 
-	# Check distances on left
+	# Check distances to walls on left
 	if ray_l_front.is_colliding():
-		left_cumulative -= ray_side_mid - position.distance_to(ray_l_front.get_collision_point())
+		var collision = ray_l_front.get_collider()
+		if collision.is_in_group("walls"):
+			left_cumulative_wall -= ray_side_mid - position.distance_to(ray_l_front.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			left_cumulative_vehicle = position.distance_to(ray_l_front.get_collision_point())
 	if ray_l_front_long.is_colliding():
-		left_cumulative -= ray_side_long - position.distance_to(ray_l_front_long.get_collision_point())
+		var collision = ray_l_front_long.get_collider()
+		if collision.is_in_group("walls"):
+			left_cumulative_wall -= ray_side_long - position.distance_to(ray_l_front_long.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			left_cumulative_vehicle = position.distance_to(ray_l_front_long.get_collision_point())
 	if ray_l_side.is_colliding():
-		left_cumulative -= ray_side_short - position.distance_to(ray_l_side.get_collision_point())
+		var collision = ray_l_side.get_collider()
+		if collision.is_in_group("walls"):
+			left_cumulative_wall -= ray_side_short - position.distance_to(ray_l_side.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			left_cumulative_vehicle = position.distance_to(ray_l_side.get_collision_point())
 
-	if left_cumulative > safe_dist_to_wall:
+	if left_cumulative_wall > safe_dist_to_wall:
 		can_go_left = true
+
+	if left_cumulative_vehicle < 25 and left_cumulative_vehicle != 0:
+		can_go_left = false
+
+	# Check distances to cars on left
+	#left_cumulative_wall = ray_side_long + ray_side_mid + ray_side_short
+
 
 	# Check distances on right
 	if ray_r_front.is_colliding():
-		right_cumulative -= ray_side_mid - position.distance_to(ray_r_front.get_collision_point())
+		var collision = ray_r_front.get_collider()
+		if collision.is_in_group("walls"):
+			right_cumulative_wall -= ray_side_mid - position.distance_to(ray_r_front.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			right_cumulative_vehicle += position.distance_to(ray_r_front.get_collision_point())
 	if ray_r_front_long.is_colliding():
-		right_cumulative -= ray_side_long - position.distance_to(ray_r_front_long.get_collision_point())
+		var collision = ray_r_front_long.get_collider()
+		if collision.is_in_group("walls"):
+			right_cumulative_wall -= ray_side_long - position.distance_to(ray_r_front_long.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			right_cumulative_vehicle += position.distance_to(ray_r_front_long.get_collision_point())
 	if ray_r_side.is_colliding():
-		right_cumulative -= ray_side_short - position.distance_to(ray_r_side.get_collision_point())
+		var collision = ray_r_side.get_collider()
+		if collision.is_in_group("walls"):
+			right_cumulative_wall -= ray_side_short - position.distance_to(ray_r_side.get_collision_point())
+		elif collision.is_in_group("vehicles"):
+			right_cumulative_vehicle += position.distance_to(ray_r_side.get_collision_point())
 
-	if right_cumulative > safe_dist_to_wall:
+	if right_cumulative_wall > safe_dist_to_wall:
 		can_go_right = true
+
+	if right_cumulative_vehicle < 25 and right_cumulative_vehicle !=0:
+		can_go_right = false
 	
 	# Which side is better
-	if right_cumulative > left_cumulative:
+	if right_cumulative_wall > left_cumulative_wall:
 		should_go_right = true
 	else:
 		should_go_left = true
 
 	# Are we about to hit the wall?
 	if ray_front.is_colliding():
-		var front_dist = position.distance_to(ray_front.get_collision_point())
-		if front_dist < must_turn_dist_forward:
-			if should_go_right:
-				must_go_right = true
-			else:
-				must_go_left = true
-		elif front_dist < must_brake_dist_forward:
-			must_brake = true
+		var collision = ray_front.get_collider()
+		if collision.is_in_group("walls"):
+			var front_dist = position.distance_to(ray_front.get_collision_point())
+			if front_dist < must_turn_dist_forward:
+				if should_go_right:
+					must_go_right = true
+				else:
+					must_go_left = true
+			elif front_dist < must_brake_dist_forward:
+				must_brake = true
+		elif collision.is_in_group("vehicles"):
+			var dist = position.distance_to(ray_front.get_collision_point())
+			if dist < 25:
+				must_slow_down = true
+#				print("Player ", id, " slows down.")
+
 
 # Trigger path update once every second
 func _on_path_timer_timeout():

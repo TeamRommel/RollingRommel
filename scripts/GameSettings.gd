@@ -8,9 +8,9 @@ var player_class = preload("PlayerData.gd")
 
 func _init():
 	var p1 = player_class.new("Monty", 0, false)
-	var cpu = player_class.new("Erwin", 1, true, 300)
+	var cpu = player_class.new("Erwin", 1, true, 250)
 	var cpu2 = player_class.new("Ludwig", 2, true, 225)
-	var cpu3 = player_class.new("Patton", 3, true, 200)
+	var cpu3 = player_class.new("Patton", 3, true, 225)
 	add_player(p1)
 	add_player(cpu)
 	add_player(cpu2)

@@ -4,6 +4,7 @@ onready var car_stats = $CarStats
 #onready var player = $PlayerVehicle
 #onready var cpu = $CPUVehicle
 onready var navigation = $Navigation2D
+onready var tilemap = get_node("Navigation2D/Level_1/TileMap3")
 onready var target_container = get_node("target_container")
 onready var label_container = get_node("label_container")
 onready var waypoints = get_node("waypoints").get_children()
@@ -29,6 +30,7 @@ var race_result = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(tilemap)
 	#player.car_stats = car_stats
 	#cpu.goal = waypoints[0].position
 	#player.waypoints = waypoints
@@ -50,13 +52,14 @@ func init_players():
 		
 		if player.is_player_cpu():
 			var plr = cpu_car.instance()
+			plr.tilemap = tilemap
 			plr.rotation_degrees = 180
 			if (player.get_player_id() == 2):
-				plr.position = Vector2(470, 330)
+				plr.position = Vector2(540, 420)
 			elif (player.get_player_id() == 3):
-				plr.position = Vector2(520, 330)
+				plr.position = Vector2(590, 420)
 			else:
-				plr.position = Vector2(470, 360)
+				plr.position = Vector2(540, 470)
 			plr.id = player.get_player_id()
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
@@ -71,9 +74,10 @@ func init_players():
 			add_child(plr)
 		else:
 			var plr = player_car.instance()
+			plr.tilemap = tilemap
 			plr.rotation_degrees = 180
 			plr.car_stats = car_stats
-			plr.position = Vector2(520, 360)
+			plr.position = Vector2(590, 470)
 			plr.id = player.get_player_id()
 			plr.waypoints = waypoints
 			screen_players.append(plr)
@@ -87,7 +91,7 @@ func init_players():
 
 func _process(delta):
 	# Debug. Draw AI waypoints
-	#draw_tracks()
+	draw_tracks()
 	# Draw labels on top of vehicles
 	draw_labels()
 	pass
@@ -110,7 +114,7 @@ func check_race_finish(player_id: int, best_lap: float):
 	print("Player %s finished the race!" % (player_id + 1))
 	if race_result.size() == players.size():
 		print("Race finished!")
-		for i in range(0,4):
+		for i in range(0, players.size()):
 			print("Position %s: Player %s" % [i + 1, players[race_result[i]].player_name])
 
 func draw_labels():
