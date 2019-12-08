@@ -1,16 +1,18 @@
 extends Node2D
 
+onready var current_level = GameSettings.levels[GameSettings.current_level]
 onready var car_stats = $CarStats
-#onready var player = $PlayerVehicle
-#onready var cpu = $CPUVehicle
 onready var navigation = $Navigation2D
-onready var tilemap = get_node("Navigation2D/Level_1/TileMap3")
+var level_scene
+var tilemap
+var waypoints
+
 onready var target_container = get_node("target_container")
 onready var label_container = get_node("label_container")
-onready var waypoints = get_node("waypoints").get_children()
+
 onready var p1_laps = get_node("p1_laps")
-#onready var cpu_label = $CPU_Label
-#onready var player_label = $Player_Label
+
+
 
 # Target sprite, used for drawing debug waypoints
 var target = load("res://scenes/target.tscn")
@@ -30,12 +32,13 @@ var race_result = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(tilemap)
+	level_scene = current_level.instance()
+	
+	navigation.add_child(level_scene)
+	tilemap = level_scene.get_node("Zones")
+	waypoints = level_scene.get_node("WaypointContainer").get_children()
+
 	#player.car_stats = car_stats
-	#cpu.goal = waypoints[0].position
-	#player.waypoints = waypoints
-	#cpu.nav = navigation
-	#cpu.trackpoints = waypoints
 	total_waypoints = waypoints.size()
 	connect_to_waypoints()
 	init_players()
@@ -53,13 +56,13 @@ func init_players():
 		if player.is_player_cpu():
 			var plr = cpu_car.instance()
 			plr.tilemap = tilemap
-			plr.rotation_degrees = 180
+			plr.rotation_degrees = get_player_rotation()
 			if (player.get_player_id() == 2):
-				plr.position = Vector2(540, 420)
+				plr.position = level_scene.start_pos_2
 			elif (player.get_player_id() == 3):
-				plr.position = Vector2(590, 420)
+				plr.position = level_scene.start_pos_3
 			else:
-				plr.position = Vector2(540, 470)
+				plr.position = level_scene.start_pos_1
 			plr.id = player.get_player_id()
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
@@ -75,9 +78,9 @@ func init_players():
 		else:
 			var plr = player_car.instance()
 			plr.tilemap = tilemap
-			plr.rotation_degrees = 180
+			plr.rotation_degrees = get_player_rotation()
 			plr.car_stats = car_stats
-			plr.position = Vector2(590, 470)
+			plr.position = level_scene.start_pos_0
 			plr.id = player.get_player_id()
 			plr.waypoints = waypoints
 			screen_players.append(plr)
@@ -88,6 +91,16 @@ func init_players():
 			player.connect("race_complete", self, "check_race_finish")
 			add_child(plr)
 		
+func get_player_rotation():
+	match level_scene.start_direction:
+		"LEFT":
+			return 180
+		"RIGHT":
+			return 0
+		"UP":
+			return -90
+		"DOWN":
+			return 90
 
 func _process(delta):
 	# Debug. Draw AI waypoints
