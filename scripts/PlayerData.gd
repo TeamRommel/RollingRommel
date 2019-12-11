@@ -19,10 +19,10 @@ var lap_start_time: int = 0
 
 # Car stats
 var acceleration: int = 10000
-var forward_power: int = 10000
+var forward_power: int = 11000
 var reverse_power: int = forward_power / -2
-var rotation_speed: int = 750
-var slip_factor: float = 0.975
+var rotation_speed: int = 1250
+var slip_factor: float = 0.97
 var friction_factor: float = 0.975
 
 # Signals

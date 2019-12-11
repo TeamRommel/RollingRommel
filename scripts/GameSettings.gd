@@ -21,7 +21,6 @@ func create_level_array() -> void:
 	levels.append(track_2)
 	levels.append(track_3)
 
-
 func _init():
 	var p1 = player_class.new("Monty", 0, false)
 	var cpu = player_class.new("Erwin", 1, true, 250)

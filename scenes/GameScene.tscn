@@ -7,54 +7,11 @@
 script = ExtResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-editor/display_folded = true
 
 [node name="CarStats" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 385.817, 10.0671 )
 scale = Vector2( 0.7, 0.7 )
-
-[node name="waypoints" type="Node2D" parent="."]
-editor/display_folded = true
-
-[node name="Area2D_3" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 499.165, 444.855 )
-
-[node name="Area2D_4" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 148.136, 444.477 )
-area_id = 1
-
-[node name="Area2D_5" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 79.5764, 368.168 )
-rotation = 1.5708
-area_id = 2
-
-[node name="Area2D_6" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 50.091, 149.178 )
-rotation = 1.5708
-area_id = 3
-
-[node name="Area2D_8" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 159.081, 81.7287 )
-area_id = 4
-
-[node name="Area2D_1" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 744.731, 79.3637 )
-area_id = 5
-
-[node name="Area2D_2" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 860.139, 192.239 )
-rotation = 1.5708
-area_id = 6
-
-[node name="Waypoint" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 860.713, 359.491 )
-rotation = 1.5708
-area_id = 7
-
-[node name="Waypoint2" parent="waypoints" instance=ExtResource( 4 )]
-position = Vector2( 762.55, 442.205 )
-area_id = 8
 
 [node name="target_container" type="Node2D" parent="."]
 
