@@ -30,13 +30,6 @@ var waypoints setget set_waypoints
 var current_waypoint: int = 0
 
 # Navigation raycasts
-# onready var ray_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_Front")
-# onready var ray_r_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF")
-# onready var ray_r_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_RF_Long")
-# onready var ray_r_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_R_Side")
-# onready var ray_l_front: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF")
-# onready var ray_l_front_long: RayCast2D = get_node("CollisionShape2D/RayCast2D_LF_Long")
-# onready var ray_l_side: RayCast2D = get_node("CollisionShape2D/RayCast2D_L_Side")
 onready var ray_front: RayCast2D = get_node("RayCast2D_Front")
 onready var ray_r_front: RayCast2D = get_node("RayCast2D_RF")
 onready var ray_r_front_long: RayCast2D = get_node("RayCast2D_RF_Long")
@@ -51,7 +44,6 @@ func _ready():
 
 func init_vehicle() -> void:
 	pass
-	
 
 # Store current track's trackpoints
 func set_waypoints(new_waypoints):
@@ -145,15 +137,15 @@ func get_input(delta):
 			engine_power = forward_power_max
 
 		# What to do if target is lost after, for instance, hitting a wall
-		if abs(angle_between) > 75 and abs(angle_between) <= 180:
+		if abs(angle_between) > 55 and abs(angle_between) <= 180:
 			# If facing a wall and not moving forward, stop.
 			if get_linear_velocity().length() < 1:
 				engine_power = engine_power * 0
 			
 			# Choose the better direction to turn to.
-			if angle_between < -5 and (can_go_left or should_go_left):
+			if angle_between < -5 and (can_go_left or should_go_left or must_go_left):
 				rotation_dir = -1
-			elif angle_between > 5 and (can_go_right or should_go_right):
+			elif angle_between > 5 and (can_go_right or should_go_right or must_go_right):
 				rotation_dir = 1
 
 func check_available_movement():

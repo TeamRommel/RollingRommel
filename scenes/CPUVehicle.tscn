@@ -7,8 +7,7 @@
 modulate = Color( 0.305882, 0.396078, 0.976471, 1 )
 script = ExtResource( 2 )
 is_cpu = true
-must_turn_dist_forward = 350.0
-safe_dist_to_wall = 450
+safe_dist_to_wall = 125
 seek_distance = 75
 
 [node name="RayCast2D_RF" type="RayCast2D" parent="." index="0"]

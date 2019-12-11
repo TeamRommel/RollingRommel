@@ -104,7 +104,7 @@ func get_player_rotation():
 
 func _process(delta):
 	# Debug. Draw AI waypoints
-	draw_tracks()
+	#draw_tracks()
 	# Draw labels on top of vehicles
 	draw_labels()
 	pass
@@ -115,7 +115,6 @@ func connect_to_waypoints():
 
 func check_laps(body, area):
 	players[body].set_current_waypoint(area)
-	#print("Body ", body, " entered area ", area)
 
 func count_laps(player_id: int, lap_no:int, lap_time: float):
 	print ("Player %s completed a lap" % player_id)

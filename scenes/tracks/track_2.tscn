@@ -13,7 +13,9 @@ start_pos_1 = Vector2( 300, 470 )
 start_pos_2 = Vector2( 350, 420 )
 start_pos_3 = Vector2( 350, 470 )
 
-[node name="Track" type="TileMap" parent="."]
+[node name="Track" type="TileMap" parent="." groups=[
+"walls",
+]]
 tile_set = ExtResource( 2 )
 collision_friction = 0.3
 collision_bounce = 0.25

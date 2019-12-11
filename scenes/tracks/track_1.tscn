@@ -13,7 +13,9 @@ start_pos_1 = Vector2( 530, 470 )
 start_pos_2 = Vector2( 580, 420 )
 start_pos_3 = Vector2( 580, 470 )
 
-[node name="Track" type="TileMap" parent="."]
+[node name="Track" type="TileMap" parent="." groups=[
+"walls",
+]]
 tile_set = ExtResource( 2 )
 collision_friction = 0.3
 collision_bounce = 0.25
@@ -77,4 +79,4 @@ area_id = 7
 
 [node name="Waypoint08" parent="WaypointContainer" instance=ExtResource( 4 )]
 position = Vector2( 728.543, 447.293 )
-area_id = 7
+area_id = 8
