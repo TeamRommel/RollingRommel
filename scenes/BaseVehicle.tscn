@@ -10,8 +10,7 @@ friction = 0.5
 bounce = 0.15
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 10.2598
-height = 21.3536
+height = 14.4183
 
 [node name="BaseVehicle" type="RigidBody2D" groups=[
 "vehicles",
@@ -22,6 +21,9 @@ physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 angular_damp = 2.5
 script = ExtResource( 1 )
+forward_power_max = 11000
+rotation_speed = 1500.0
+slip_factor = 0.97
 
 [node name="TankShadow" type="Sprite" parent="."]
 position = Vector2( 1.5, 1.5 )
