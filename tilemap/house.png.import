@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/oldpaperNEW.png-5a3dd4c1c1671a82d6044c665756a35a.stex"
+path="res://.import/house.png-efd3a2c1c921035c4eb05c157b433018.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldpaperNEW.png"
-dest_files=[ "res://.import/oldpaperNEW.png-5a3dd4c1c1671a82d6044c665756a35a.stex" ]
+source_file="res://tilemap/house.png"
+dest_files=[ "res://.import/house.png-efd3a2c1c921035c4eb05c157b433018.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

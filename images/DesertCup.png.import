@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DesertCup.png-7acdac61790a90eab6948db3d280abab.stex"
+path="res://.import/DesertCup.png-91b8ff4059766bae8acb88da8ba24e6f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DesertCup.png"
-dest_files=[ "res://.import/DesertCup.png-7acdac61790a90eab6948db3d280abab.stex" ]
+source_file="res://images/DesertCup.png"
+dest_files=[ "res://.import/DesertCup.png-91b8ff4059766bae8acb88da8ba24e6f.stex" ]
 
 [params]
 

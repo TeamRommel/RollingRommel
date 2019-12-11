@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ring.png-a898ac7ee4cd7870a72d17e452c5459b.stex"
+path="res://.import/StartButton.png-c00edc499c56c89224a29391e52d860c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ring.png"
-dest_files=[ "res://.import/Ring.png-a898ac7ee4cd7870a72d17e452c5459b.stex" ]
+source_file="res://images/StartButton.png"
+dest_files=[ "res://.import/StartButton.png-c00edc499c56c89224a29391e52d860c.stex" ]
 
 [params]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/LevelSpecification.gd" type="Script" id=1]
-[ext_resource path="res://tileset_test_64c.tres" type="TileSet" id=2]
-[ext_resource path="res://zone_tileset_16.tres" type="TileSet" id=3]
+[ext_resource path="res://tilemap/tileset_current_64x64.tres" type="TileSet" id=2]
+[ext_resource path="res://tilemap/zone_tileset_16.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/Waypoint.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 lap_count = 5
 start_pos_0 = Vector2( 530, 420 )
@@ -38,41 +38,43 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="WaypointContainer" type="Node2D" parent="."]
 
-[node name="Waypoint" parent="WaypointContainer" instance=ExtResource( 4 )]
+[node name="Waypoint00" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 499.307, 444.586 )
+
+[node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
 position = Vector2( 141.013, 449.098 )
 area_id = 1
 
-[node name="Waypoint2" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 145.525, 75.4615 )
-area_id = 4
-
-[node name="Waypoint3" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 751.105, 77.2665 )
-area_id = 5
-
-[node name="Waypoint4" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 759.228, 433.755 )
-area_id = 8
-
-[node name="Waypoint5" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 499.307, 444.586 )
-
-[node name="Waypoint6" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 68.8128, 375.093 )
+[node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 51.6647, 355.237 )
 rotation = 1.5708
 area_id = 2
 
-[node name="Waypoint7" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 71.5203, 144.954 )
+[node name="Waypoint03" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 57.0804, 145.857 )
 rotation = 1.5708
 area_id = 3
 
-[node name="Waypoint8" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 862.114, 128.709 )
+[node name="Waypoint04" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 165.381, 70.0464 )
+area_id = 4
+
+[node name="Waypoint05" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 730.347, 79.0721 )
+area_id = 5
+
+[node name="Waypoint06" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 859.405, 140.441 )
 rotation = 1.5708
+scale = Vector2( 1, 1.2 )
 area_id = 6
 
-[node name="Waypoint9" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 861.211, 357.043 )
+[node name="Waypoint07" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 865.724, 368.775 )
 rotation = 1.5708
+scale = Vector2( 1, 1.2 )
+area_id = 7
+
+[node name="Waypoint08" parent="WaypointContainer" instance=ExtResource( 4 )]
+position = Vector2( 728.543, 447.293 )
 area_id = 7
