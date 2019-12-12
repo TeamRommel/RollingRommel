@@ -3,15 +3,13 @@ extends Node2D
 onready var current_level = GameSettings.levels[GameSettings.current_level]
 onready var car_stats = $CarStats
 onready var navigation = $Navigation2D
+onready var standings = $Standings
 var level_scene
 var tilemap
 var waypoints
 
 onready var target_container = get_node("target_container")
 onready var label_container = get_node("label_container")
-
-onready var p1_laps = get_node("p1_laps")
-
 
 
 # Target sprite, used for drawing debug waypoints
@@ -117,9 +115,7 @@ func check_laps(body, area):
 	players[body].set_current_waypoint(area)
 
 func count_laps(player_id: int, lap_no:int, lap_time: float):
-	print ("Player %s completed a lap" % player_id)
-	if player_id == 0:
-		p1_laps.set_text("Player 1\nLap: %s\nTime: %2.2f" % [lap_no, lap_time])
+	standings.update_lap(player_id, lap_no, lap_time)
 
 func check_race_finish(player_id: int, best_lap: float):
 	race_result.append(player_id)
