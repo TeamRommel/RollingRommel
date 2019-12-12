@@ -57,13 +57,13 @@ func _physics_process(delta):
 
 	# Calculate forces
 	var forwards_force = Vector2.RIGHT.rotated(rotation) * engine_power * friction_factor * delta
-	var friction_force = -forwards_velocity * friction_factor
-	var total_force
-	if (slow):
-		total_force = (forwards_force + friction_force) * 0.05
+	var friction_force
+	if slow:
+		friction_force = -forwards_velocity * friction_factor * 2.5
 	else:
-		total_force = forwards_force + friction_force
-
+		friction_force = -forwards_velocity * friction_factor
+	var total_force = (forwards_force + friction_force)
+	
 	# Apply forces and torque
 	set_applied_force(total_force);
 	set_linear_velocity(forwards_velocity + (sideways_velocity * slip_factor))
