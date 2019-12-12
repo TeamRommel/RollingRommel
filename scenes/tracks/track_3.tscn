@@ -42,7 +42,7 @@ tile_data = PoolIntArray( 0, -2147483648, 0, 1, -2147483648, 0, 2, -2147483648, 
 position = Vector2( 268, 464 )
 
 [node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 188, 453 )
+position = Vector2( 232, 457 )
 area_id = 1
 
 [node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]

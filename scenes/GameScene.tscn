@@ -22,3 +22,7 @@ z_index = 20
 [node name="Standings" parent="." instance=ExtResource( 3 )]
 position = Vector2( 480, 522 )
 z_index = 20
+
+[node name="RaceFinishedTimer" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="timeout" from="RaceFinishedTimer" to="." method="_on_RaceFinishedTimer_timeout"]

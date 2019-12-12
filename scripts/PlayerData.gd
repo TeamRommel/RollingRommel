@@ -14,7 +14,7 @@ var current_waypoint: int = 0
 var completed_laps: int = 0
 var total_laps: int = 0
 var lap_time: float = 0
-var best_lap: float = 0
+var best_lap: float = 999.99
 var lap_start_time: int = 0
 
 # Car stats
@@ -86,4 +86,4 @@ func add_lap() -> void:
 
 func check_best_lap(last_lap_time) -> void:
 	if last_lap_time < best_lap:
-		best_lap = lap_start_time
+		best_lap = last_lap_time

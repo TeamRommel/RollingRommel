@@ -2,10 +2,12 @@ extends Node
 
 var no_of_players: int = 0
 var no_of_humans: int = 0
-var current_level: int = 4
+var current_level: int = 0
 var players: Array = []
 var player_class = preload("PlayerData.gd")
 var levels: Array = []
+var gamemode: int = 1
+var track_results: Array = []
 
 var track_1 = preload("res://scenes/tracks/track_1.tscn")
 var track_2 = preload("res://scenes/tracks/track_2.tscn")
@@ -43,6 +45,9 @@ func get_players():
 	
 func add_player(player):
 	players.append(player)
+
+func reset_cup_settings() -> void:
+	current_level = 0
 
 # Player objects created with new() must be manually removed on quit.
 func _exit_tree():

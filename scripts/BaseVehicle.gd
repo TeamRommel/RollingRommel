@@ -12,6 +12,7 @@ export (float) var slip_factor = 0.975
 export (float) var friction_factor = 0.975
 export (int) var nitro_power = 200
 var slow: bool = false
+var is_race_finished: bool = false
 
 # Values calculated during runtime
 var rotation_dir: float = 0
@@ -44,9 +45,11 @@ func offset_shadow() -> void:
 	shadow.position = Vector2(shadow_offset_pxl, shadow_offset_pxl).rotated(-rotation)
 
 func _physics_process(delta):
-
 	offset_shadow()
-	get_input(delta)
+
+	if not is_race_finished:
+		get_input(delta)
+
 	check_position()
 	# Calculate forward and sideways velocity. These are used to calculate linear velocity.
 	var forwards_velocity = Vector2.RIGHT.rotated(rotation) * linear_velocity.dot(Vector2.RIGHT.rotated(rotation)) ;
@@ -64,7 +67,8 @@ func _physics_process(delta):
 	# Apply forces and torque
 	set_applied_force(total_force);
 	set_linear_velocity(forwards_velocity + (sideways_velocity * slip_factor))
-	set_applied_torque(rotation_dir * rotation_speed)
+	if not is_race_finished:
+		set_applied_torque(rotation_dir * rotation_speed)
 	if will_use_nitro:
 		use_nitro()
 
@@ -85,3 +89,8 @@ func use_nitro() -> void:
 
 func _on_NitroTimer_timeout() -> void:
 	can_use_nitro = true
+
+func finish_race() -> void:
+	engine_power = 0
+	rotation = 0
+	is_race_finished = true

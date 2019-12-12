@@ -7,7 +7,7 @@
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
-lap_count = 5
+lap_count = 3
 start_pos_0 = Vector2( 300, 420 )
 start_pos_1 = Vector2( 300, 470 )
 start_pos_2 = Vector2( 350, 420 )
@@ -42,7 +42,7 @@ tile_data = PoolIntArray( 0, -2147483648, 0, 1, -2147483648, 0, 2, -2147483648, 
 position = Vector2( 267, 430 )
 
 [node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 150, 429 )
+position = Vector2( 195.653, 447.571 )
 area_id = 1
 
 [node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]
