@@ -19,10 +19,10 @@ scale = Vector2( 0.7, 0.7 )
 z_index = 20
 
 [node name="p1_laps" type="Label" parent="."]
-margin_left = 20.3577
-margin_top = 474.218
-margin_right = 131.358
-margin_bottom = 522.218
+margin_left = 8.0077
+margin_top = 484.668
+margin_right = 119.008
+margin_bottom = 532.668
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Player 1
 Lap: 0
