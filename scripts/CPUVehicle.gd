@@ -137,9 +137,9 @@ func get_input(delta):
 			engine_power = forward_power_max
 
 		# What to do if target is lost after, for instance, hitting a wall
-		if abs(angle_between) > 55 and abs(angle_between) <= 180:
+		if abs(angle_between) > 5 and abs(angle_between) <= 180:
 			# If facing a wall and not moving forward, stop.
-			if get_linear_velocity().length() < 1:
+			if get_linear_velocity().length() < 1 and must_brake:
 				engine_power = engine_power * 0
 			
 			# Choose the better direction to turn to.

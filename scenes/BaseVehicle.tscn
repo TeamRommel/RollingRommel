@@ -10,6 +10,7 @@ friction = 0.5
 bounce = 0.15
 
 [sub_resource type="CapsuleShape2D" id=2]
+radius = 10.5203
 height = 14.4183
 
 [node name="BaseVehicle" type="RigidBody2D" groups=[
