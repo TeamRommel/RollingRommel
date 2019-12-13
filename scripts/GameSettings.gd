@@ -8,6 +8,7 @@ var player_class = preload("PlayerData.gd")
 var levels: Array = []
 var gamemode: int = 1
 var track_results: Array = []
+var race_points: Array = [25, 15, 12, 10]
 
 var track_1 = preload("res://scenes/tracks/track_1.tscn")
 var track_2 = preload("res://scenes/tracks/track_2.tscn")

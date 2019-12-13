@@ -125,7 +125,7 @@ func count_laps(player_id: int, lap_no:int, lap_time: float):
 	standings.update_lap(player_id, lap_no, lap_time)
 
 func check_race_finish(player_id: int, best_lap: float):
-	race_result.append([players[player_id].player_name, best_lap])
+	race_result.append([players[player_id].player_name, best_lap, GameSettings.race_points[race_result.size()]])
 	if race_result.size() == players.size():
 		GameSettings.track_results = race_result
 		GameSettings.complete_level()
