@@ -7,6 +7,7 @@ onready var standings = $Standings
 onready var race_finished_timer = $RaceFinishedTimer
 var level_scene
 var tilemap
+var start_positions
 var waypoints
 
 onready var target_container = get_node("target_container")
@@ -37,6 +38,7 @@ func _ready():
 	navigation.add_child(level_scene)
 	tilemap = level_scene.get_node("Zones")
 	waypoints = level_scene.get_node("WaypointContainer").get_children()
+	start_positions = level_scene.start_positions
 
 	#player.car_stats = car_stats
 	total_waypoints = waypoints.size()
@@ -53,48 +55,35 @@ func init_players():
 		lbl.set("custom_colors/font_color", Color(1,0,0))
 		player_labels.append(lbl)
 		label_container.add_child(lbl)
-		
+
+		var plr
+
 		if player.is_player_cpu():
-			var plr = cpu_car.instance()
-			plr.tilemap = tilemap
-			plr.rotation_degrees = get_player_rotation()
-			if (player.get_player_id() == 2):
-				plr.position = level_scene.start_pos_2
-			elif (player.get_player_id() == 3):
-				plr.position = level_scene.start_pos_3
-			else:
-				plr.position = level_scene.start_pos_1
-			plr.id = player.get_player_id()
+			plr = cpu_car.instance()
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
-			plr.waypoints = waypoints
 			plr.must_turn_dist_forward = player.must_turn_dist_forward
-			screen_players.append(plr)
-			lbl.rect_position = plr.position + Vector2(-10, -30)
-			player.set_no_of_waypoints(total_waypoints)
-			player.set_no_of_laps(total_laps)
-			player.completed_laps = 0
-			player.best_lap = 999.99
-			player.connect("lap_complete", self, "count_laps")
-			player.connect("race_complete", self, "check_race_finish")
-			add_child(plr)
 		else:
-			var plr = player_car.instance()
-			plr.tilemap = tilemap
-			plr.rotation_degrees = get_player_rotation()
+			plr = player_car.instance()
 			plr.car_stats = car_stats
-			plr.position = level_scene.start_pos_0
-			plr.id = player.get_player_id()
-			plr.waypoints = waypoints
-			screen_players.append(plr)
-			lbl.rect_position = plr.position + Vector2(-10, -30)
-			player.set_no_of_waypoints(total_waypoints)
-			player.set_no_of_laps(total_laps)
-			player.completed_laps = 0
-			player.best_lap = 999.99
-			player.connect("lap_complete", self, "count_laps")
-			player.connect("race_complete", self, "check_race_finish")
-			add_child(plr)
+		
+		# Common to humans & computer
+		plr.tilemap = tilemap
+		plr.rotation_degrees = get_player_rotation()
+		plr.id = player.get_player_id()
+		plr.position = level_scene.start_positions[plr.id]
+		plr.waypoints = waypoints
+		screen_players.append(plr)
+		lbl.rect_position = plr.position + Vector2(-10, -30)
+		player.set_no_of_waypoints(total_waypoints)
+		player.set_no_of_laps(total_laps)
+		player.completed_laps = 0
+		player.best_lap = 999.99
+		player.connect("lap_complete", self, "count_laps")
+		player.connect("race_complete", self, "check_race_finish")
+		add_child(plr)
+				
+
 		
 func get_player_rotation():
 	match level_scene.start_direction:
