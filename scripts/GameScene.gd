@@ -63,6 +63,8 @@ func init_players():
 			plr.goal = waypoints[0].position
 			plr.nav = navigation
 			plr.must_turn_dist_forward = player.must_turn_dist_forward
+			plr.acceleration = player.acceleration
+			plr.forward_power_max = player.forward_power
 		else:
 			plr = player_car.instance()
 			plr.car_stats = car_stats
