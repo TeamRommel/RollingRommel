@@ -1,0 +1,614 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://tilemap/all6464.png" type="Texture" id=1]
+[ext_resource path="res://tilemap/house.png" type="Texture" id=2]
+[ext_resource path="res://scripts/OilPatch.gd" type="Script" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -32, -16, 4, -12, 32, -4, 32, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( -32, -16, 4, -12, 32, -4, 32, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( -32, -4, -8, 8, 24, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -32, -4, -8, 8, 24, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 32, -32, 32, 32, 16, 32, -4, 20, -32, -32, -32, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5 ) ]
+outlines = [ PoolVector2Array( 32, -32, -32, -32, -32, 16, -4, 20, 16, 32, 32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( -32, -32, 24, -32, 32, -24, 32, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( -32, -32, 24, -32, 32, -24, 32, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( -32, -24, -12, 0, 4, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -32, -24, -12, 0, 4, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( 32, -32, 32, -16, 16, -32 )
+polygons = [ PoolIntArray( 0, 1, 2 ) ]
+outlines = [ PoolVector2Array( 16, -32, 32, -16, 32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( -32, -32, 32, -32, 32, 32, -20, 8, -32, -16, -16, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 2, 5, 3 ), PoolIntArray( 0, 0, 4 ) ]
+outlines = [ PoolVector2Array( -32, -32, -32, -16, -20, 8, -16, 32, 32, 32, 32, -32, -32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=8]
+vertices = PoolVector2Array( 4, -32, 12, -8, 16, 32, -32, 32, -32, -32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( 4, -32, 12, -8, 16, 32, -32, 32, -32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=9]
+vertices = PoolVector2Array( -32, -16, 0, -12, 32, 4, 32, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( -32, -16, 0, -12, 32, 4, 32, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=10]
+vertices = PoolVector2Array( -32, 4, -16, 16, -4, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -32, 4, -16, 16, -4, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=11]
+vertices = PoolVector2Array( -28, 16, -32, 16, -32, -32, 32, -32, 32, 32, -20, 20, -16, 28, -16, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 6, 5, 4 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 7, 7, 6 ) ]
+outlines = [ PoolVector2Array( -16, 32, -16, 28, -20, 20, -28, 16, -32, 16, -32, -32, 32, -32, 32, 32, -16, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=12]
+vertices = PoolVector2Array( -4, -32, 8, -12, 16, 20, 16, 32, -32, 32, -32, -32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
+outlines = [ PoolVector2Array( -4, -32, 8, -12, 16, 20, 16, 32, -32, 32, -32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=13]
+vertices = PoolVector2Array( -32, 32, -32, -32, 32, -32, 32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 32, 32, 32, -32, -32, -32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=14]
+vertices = PoolVector2Array( -16, 32, -16, -32, 32, -32, 32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -16, 32, -16, -32, 32, -32, 32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=15]
+vertices = PoolVector2Array( 32, -32, 32, -1.46512, 32, 32, -16, 32, -16, -32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( -16, -32, -16, 32, 32, 32, 32, -1.46512, 32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=16]
+vertices = PoolVector2Array( 32, -32, 32, 32, -16, 32, -16, -32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -16, -32, -16, 32, 32, 32, 32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=17]
+vertices = PoolVector2Array( 15, -13, 32, -32, 32, 32, 10, -3, -32, -32, 5, -17, -8, -14, -32, 32, -9, -6, 0, -2 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 7, 4, 6, 8 ), PoolIntArray( 3, 2, 7, 9 ), PoolIntArray( 7, 8, 9 ) ]
+outlines = [ PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 ), PoolVector2Array( 5, -17, 15, -13, 10, -3, 0, -2, -9, -6, -8, -14 ) ]
+
+[sub_resource type="NavigationPolygon" id=18]
+vertices = PoolVector2Array( -24, -12, -32, -12, -32, -32, -16, -28, 32, -32, -12, -28, 12, -24, 32, 32, 16, -8, -32, 32, -24, 8, -8, 16, 4, 16, 16, 8, 12, -16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 6, 5, 4 ), PoolIntArray( 6, 4, 7, 8 ), PoolIntArray( 9, 1, 0, 10 ), PoolIntArray( 9, 10, 11 ), PoolIntArray( 7, 9, 11, 12 ), PoolIntArray( 7, 12, 13 ), PoolIntArray( 7, 13, 8 ), PoolIntArray( 6, 8, 14 ) ]
+outlines = [ PoolVector2Array( -24, -12, -16, -28, -12, -28, 12, -24, 12, -16, 16, -8, 16, 8, 4, 16, -8, 16, -24, 8, -24, -12, -32, -12, -32, 32, 32, 32, 32, -32, -32, -32, -32, -12 ) ]
+
+[sub_resource type="CircleShape2D" id=19]
+radius = 23.0217
+
+[sub_resource type="NavigationPolygon" id=20]
+vertices = PoolVector2Array( -32, 16, -32, -32, -31, -32, -9, -24, -16, -8, 32, -32, 6, -25, 12, -20, 32, 16, 12, -4, -16, 4, 8, 4, -13, 11, -4, 10 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 3, 2, 5, 6 ), PoolIntArray( 7, 6, 5 ), PoolIntArray( 7, 5, 8, 9 ), PoolIntArray( 0, 4, 10 ), PoolIntArray( 11, 9, 8 ), PoolIntArray( 0, 10, 12 ), PoolIntArray( 8, 0, 12, 13 ), PoolIntArray( 11, 8, 13 ) ]
+outlines = [ PoolVector2Array( -9, -24, 6, -25, 12, -20, 12, -4, 8, 4, -4, 10, -13, 11, -16, 4, -16, -8, -9, -24, -32, -32, -32, 16, 32, 16, 32, -32, -31, -32, -32, -32 ) ]
+
+[sub_resource type="NavigationPolygon" id=21]
+vertices = PoolVector2Array( -23, 1, -24, 8, -32, 16, -32, -32, -20, -21, -20, -17, -16, -12, -17, -2, 13, -9, 8, -14, 32, -32, 32, 16, 13, -4, -16, -25, -10, -25, -1, -21, 0, -18, 2, -14, -7, -12, -2, -11, -3, -5, -9, 1, 7, 1, 0, 1, -8, 9, -18, 11, -12, 11 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 0, 4, 5 ), PoolIntArray( 0, 5, 6, 7 ), PoolIntArray( 8, 9, 10 ), PoolIntArray( 8, 10, 11, 12 ), PoolIntArray( 13, 4, 3 ), PoolIntArray( 13, 3, 10, 14 ), PoolIntArray( 15, 14, 10 ), PoolIntArray( 16, 15, 10, 9, 17 ), PoolIntArray( 18, 16, 17, 19 ), PoolIntArray( 18, 19, 20, 21, 7, 6 ), PoolIntArray( 22, 12, 11 ), PoolIntArray( 21, 20, 23, 24 ), PoolIntArray( 2, 1, 25 ), PoolIntArray( 11, 2, 25, 26 ), PoolIntArray( 11, 26, 24 ), PoolIntArray( 22, 11, 24, 23 ) ]
+outlines = [ PoolVector2Array( -32, -32, -20, -21, -20, -17, -16, -12, -7, -12, 0, -18, -1, -21, -10, -25, -16, -25, -20, -21, -32, -32, 32, -32, 8, -14, 2, -14, -2, -11, -3, -5, 0, 1, 7, 1, 13, -4, 13, -9, 8, -14, 32, -32, 32, 16, -32, 16, -24, 8, -18, 11, -12, 11, -8, 9, -9, 1, -17, -2, -23, 1, -24, 8, -32, 16 ) ]
+
+[sub_resource type="NavigationPolygon" id=22]
+vertices = PoolVector2Array( -24, -32, -32, -32, -15.9504, -32, -16, -32, 32, -32, 32, 16, 9, 16, -11, 5, -16, -11 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 0, 2 ), PoolIntArray( 2, 4, 5, 6, 7, 8, 3 ) ]
+outlines = [ PoolVector2Array( -16, -32, -24, -32, -32, -32, -32, 32, 32, -32, 32, 16, 9, 16, -11, 5, -16, -11 ) ]
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 13, 2 )
+
+[sub_resource type="NavigationPolygon" id=24]
+vertices = PoolVector2Array( -32, 32, -32, -32, -19, -32, -15, -21, 32, 32, -6, -16, 32, 16, 32, -16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 6, 5, 7 ) ]
+outlines = [ PoolVector2Array( -32, -32, -19, -32, -15, -21, -6, -16, 32, -16, 32, 16, 32, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=25]
+vertices = PoolVector2Array( -32, -32, -16, -32, -16, 32, -32, 32, -32, -10 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( -32, -32, -16, -32, -16, 32, -32, 32, -32, -10 ) ]
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 14.066, 31.9915 )
+
+[sub_resource type="NavigationPolygon" id=26]
+vertices = PoolVector2Array( 32, 32, 16, 32, 16, 10, 24, -6, 32, -11 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( 32, -11, 24, -6, 16, 10, 16, 32, 32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=27]
+vertices = PoolVector2Array( 512, 632, 448, 632, 448, 589, 460, 584, 512, 584 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( 512, 584, 460, 584, 448, 589, 448, 632, 512, 632 ) ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 96, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/StaticBody2D"]
+polygon = PoolVector2Array( 32, -32, 32, -32, 32, 32, -32, 32, -32, -32 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 224, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2/StaticBody2D"]
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 352, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite3/StaticBody2D"]
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 480, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite4/StaticBody2D"]
+polygon = PoolVector2Array( 32, -32, 32, 32, -32, 32, -32, -32, 32, -32 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 608, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite5/StaticBody2D"]
+scale = Vector2( 5, 5 )
+polygon = PoolVector2Array( -6.39999, -6.4, -6.39999, 6.4, 6.4, 6.4, 6.4, -6.4 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 736, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite6/StaticBody2D"]
+polygon = PoolVector2Array( 32, -32, 32, 32, -32, 32, -32, -32, 32, -32 )
+
+[node name="Sprite7" type="Sprite" parent="."]
+position = Vector2( 864, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 64, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite7"]
+navpoly = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite7/StaticBody2D"]
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, -4, 4, -12, -32, -16 )
+
+[node name="Sprite8" type="Sprite" parent="."]
+position = Vector2( 96, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite8"]
+navpoly = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite8/StaticBody2D"]
+polygon = PoolVector2Array( 32, 32, 32, -32, -32, -32, -32, -29, 29, -29, 29, 32 )
+
+[node name="Sprite10" type="Sprite" parent="."]
+position = Vector2( 352, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite10"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite10/StaticBody2D"]
+polygon = PoolVector2Array( -28, 32, 16, 32, -4, 20, -32, 16, -32, 32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite10"]
+navpoly = SubResource( 3 )
+
+[node name="Sprite11" type="Sprite" parent="."]
+position = Vector2( 480, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite11"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite11/StaticBody2D"]
+polygon = PoolVector2Array( 32, -28, 32, -32, 24, -32, 32, -24 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite11"]
+navpoly = SubResource( 4 )
+
+[node name="Sprite12" type="Sprite" parent="."]
+position = Vector2( 608, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite12"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite12/StaticBody2D"]
+polygon = PoolVector2Array( 28, -32, 32, -32, 32, 32, 28, 32, 28, -13, 28, -27 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite12"]
+navpoly = SubResource( 5 )
+
+[node name="Sprite13" type="Sprite" parent="."]
+position = Vector2( 736, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite13"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite13/StaticBody2D"]
+polygon = PoolVector2Array( 16, -32, 32, -16, 32, 32, -32, 32, -32, -32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite13"]
+navpoly = SubResource( 6 )
+
+[node name="Sprite14" type="Sprite" parent="."]
+position = Vector2( 864, 192 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite14"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite14/StaticBody2D"]
+polygon = PoolVector2Array( -32, -16, -20, 8, -16, 32, -32, 32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite14"]
+navpoly = SubResource( 7 )
+
+[node name="Sprite15" type="Sprite" parent="."]
+position = Vector2( 96, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite15"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite15/StaticBody2D"]
+polygon = PoolVector2Array( 29, -32, 29, -7, 29, 32, 32, 32, 32, -32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite15"]
+navpoly = SubResource( 8 )
+
+[node name="Sprite16" type="Sprite" parent="."]
+position = Vector2( 224, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite16"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite16/StaticBody2D"]
+polygon = PoolVector2Array( -32, -30, 0, -30, 32, -30, 32, -32, -32, -32, -32, -30 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite16"]
+navpoly = SubResource( 9 )
+
+[node name="Sprite17" type="Sprite" parent="."]
+position = Vector2( 352, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite17"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite17/StaticBody2D"]
+polygon = PoolVector2Array( 27, -28, 27, -16, 27, 32, 32, 32, 32, -32, -32, -32, -32, -28 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite17"]
+navpoly = SubResource( 10 )
+
+[node name="Sprite18" type="Sprite" parent="."]
+position = Vector2( 480, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 192, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite18"]
+navpoly = SubResource( 11 )
+
+[node name="Sprite19" type="Sprite" parent="."]
+position = Vector2( 608, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite19"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite19/StaticBody2D"]
+polygon = PoolVector2Array( 30, -32, 30, -10, 30, 19, 30, 32, 32, 32, 32, -32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite19"]
+navpoly = SubResource( 12 )
+
+[node name="Sprite20" type="Sprite" parent="."]
+position = Vector2( 736, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite20"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite20"]
+navpoly = SubResource( 13 )
+
+[node name="Sprite21" type="Sprite" parent="."]
+position = Vector2( 864, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 256, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite21"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite21/StaticBody2D"]
+position = Vector2( -25.5875, 0 )
+scale = Vector2( 0.304687, 1 )
+polygon = PoolVector2Array( -21.0459, -32, -21.0459, 32, -14.4819, 32, -14.4819, -32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite21"]
+navpoly = SubResource( 14 )
+
+[node name="Sprite22" type="Sprite" parent="."]
+position = Vector2( 96, 384 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 256, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite22"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite22/StaticBody2D"]
+position = Vector2( -25.5875, 0 )
+scale = Vector2( 0.304688, 1 )
+polygon = PoolVector2Array( -16, -32, -16, 32, -21.0462, 32, -21.0462, -32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite22"]
+navpoly = SubResource( 15 )
+
+[node name="Sprite23" type="Sprite" parent="."]
+position = Vector2( 224, 384 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 256, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite23"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite23/StaticBody2D"]
+position = Vector2( -25.5875, 0 )
+scale = Vector2( 0.304687, 1 )
+polygon = PoolVector2Array( -21.0461, -32, -16, -32, -16, 32, -21.0461, 32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite23"]
+navpoly = SubResource( 16 )
+
+[node name="Sprite24" type="Sprite" parent="."]
+position = Vector2( 352, 384 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="Sprite25" type="Sprite" parent="."]
+position = Vector2( 480, 384 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 64, 64 )
+
+[node name="Sprite26" type="Sprite" parent="."]
+position = Vector2( 608, 384 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 64, 64 )
+
+[node name="Sprite27" type="Sprite" parent="."]
+position = Vector2( 740, 384 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 64 )
+
+[node name="Sprite28" type="Sprite" parent="."]
+position = Vector2( 864, 384 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 64, 64, 64 )
+
+[node name="Sprite29" type="Sprite" parent="."]
+position = Vector2( 96, 484 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 64, 64 )
+
+[node name="Sprite30" type="Sprite" parent="."]
+position = Vector2( 224, 484 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite30"]
+navpoly = SubResource( 17 )
+
+[node name="Sprite31" type="Sprite" parent="."]
+position = Vector2( 352, 484 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 128, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite31"]
+navpoly = SubResource( 18 )
+
+[node name="Area2D" type="Area2D" parent="Sprite31"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite31/Area2D"]
+position = Vector2( -4, -6 )
+shape = SubResource( 19 )
+
+[node name="Sprite32" type="Sprite" parent="."]
+position = Vector2( 476, 484 )
+z_index = 10
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 128, 128, 64, 64 )
+
+[node name="Sprite33" type="Sprite" parent="."]
+position = Vector2( 604, 484 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite33"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite33/StaticBody2D"]
+visible = false
+polygon = PoolVector2Array( -13, 11, -4, 10, 8, 4, 12, -4, 12, -20, 6, -25, -9, -24, -16, -8, -16, 4 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite33/StaticBody2D"]
+polygon = PoolVector2Array( -32, 16, 32, 16, 32, 32, -32, 32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite33"]
+navpoly = SubResource( 20 )
+
+[node name="Sprite34" type="Sprite" parent="."]
+position = Vector2( 732, 484 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 192, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite34"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite34/StaticBody2D"]
+polygon = PoolVector2Array( -32, 16, 32, 16, 32, 32, -32, 32 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite34/StaticBody2D"]
+polygon = PoolVector2Array( -17, -2, -9, 1, -8, 9, -12, 11, -18, 11, -24, 8, -23, 1, -19, -1 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Sprite34/StaticBody2D"]
+polygon = PoolVector2Array( -20, -17, -16, -12, -7, -12, 0, -18, -1, -21, -10, -25, -16, -25, -20, -21 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Sprite34/StaticBody2D"]
+polygon = PoolVector2Array( 2, -14, 8, -14, 13, -9, 13, -4, 7, 1, 0, 1, -3, -5, -2, -11 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite34"]
+navpoly = SubResource( 21 )
+
+[node name="WallDirt" type="Sprite" parent="."]
+position = Vector2( 864, 484 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 256, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WallDirt"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallDirt/StaticBody2D"]
+polygon = PoolVector2Array( -32, -32, -30, -32, -30, 32, -32, 32 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WallDirt/StaticBody2D"]
+polygon = PoolVector2Array( 32, 30, -32, 30, -32, 32, 32, 32 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WallDirt" groups=[
+"WallDirt",
+]]
+navpoly = SubResource( 22 )
+
+[node name="WallDirt2" type="Sprite" parent="."]
+position = Vector2( 96, 600 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 256, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WallDirt2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDirt2/StaticBody2D"]
+position = Vector2( 19, -30 )
+shape = SubResource( 23 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WallDirt2"]
+visible = false
+navpoly = SubResource( 24 )
+
+[node name="WallDirt3" type="Sprite" parent="."]
+position = Vector2( 222, 599.693 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 320, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WallDirt3"]
+navpoly = SubResource( 25 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WallDirt3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDirt3/StaticBody2D"]
+position = Vector2( 18, 0 )
+shape = SubResource( 28 )
+
+[node name="WallDirt4" type="Sprite" parent="."]
+position = Vector2( 352, 600 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 320, 64, 64 )
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="WallDirt4"]
+navpoly = SubResource( 26 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WallDirt4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallDirt4/StaticBody2D"]
+polygon = PoolVector2Array( -32, -32, -2, -32, -2, 32, -32, 32 )
+
+[node name="WallDirt5" type="Sprite" parent="."]
+position = Vector2( 480, 600 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 320, 64, 64 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 27 )
+[connection signal="body_entered" from="Sprite31/Area2D" to="Sprite31/Area2D" method="_on_Area2D_body_entered"]

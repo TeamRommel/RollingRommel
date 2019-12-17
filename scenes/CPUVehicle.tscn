@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/BaseVehicle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/CPUVehicle.gd" type="Script" id=2]
+
+[node name="CPUVehicle" index="0" instance=ExtResource( 1 )]
+modulate = Color( 0.305882, 0.396078, 0.976471, 1 )
+script = ExtResource( 2 )
+is_cpu = true
+safe_dist_to_wall = 125
+seek_distance = 75
+
+[node name="RayCast2D_RF" type="RayCast2D" parent="." index="0"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 200, 100 )
+collision_mask = 3
+
+[node name="RayCast2D_LF" type="RayCast2D" parent="." index="1"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 200, -100 )
+collision_mask = 3
+
+[node name="RayCast2D_RF_Long" type="RayCast2D" parent="." index="2"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 250, 50 )
+collision_mask = 3
+
+[node name="RayCast2D_LF_Long" type="RayCast2D" parent="." index="3"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 250, -50 )
+collision_mask = 3
+
+[node name="RayCast2D_Front" type="RayCast2D" parent="." index="4"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 300, 0 )
+collision_mask = 3
+
+[node name="RayCast2D_R_Side" type="RayCast2D" parent="." index="5"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 3
+
+[node name="RayCast2D_L_Side" type="RayCast2D" parent="." index="6"]
+position = Vector2( 1, 0 )
+enabled = true
+cast_to = Vector2( 0, -100 )
+collision_mask = 3
+
+[node name="TankShadow" parent="." index="7"]
+position = Vector2( 0, 0 )
+
+[node name="Path_Timer" type="Timer" parent="." index="10"]
+wait_time = 0.5
+autostart = true
+[connection signal="timeout" from="Path_Timer" to="." method="_on_path_timer_timeout"]

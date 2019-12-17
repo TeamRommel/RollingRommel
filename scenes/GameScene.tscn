@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/GameScene.gd" type="Script" id=1]
+[ext_resource path="res://scenes/CarStats.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/StandingsBar.tscn" type="PackedScene" id=3]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="CarStats" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 385.817, 10.0671 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="target_container" type="Node2D" parent="."]
+
+[node name="label_container" type="Node2D" parent="."]
+z_index = 20
+
+[node name="Standings" parent="." instance=ExtResource( 3 )]
+position = Vector2( 480, 522 )
+z_index = 20
+
+[node name="RaceFinishedTimer" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="timeout" from="RaceFinishedTimer" to="." method="_on_RaceFinishedTimer_timeout"]
