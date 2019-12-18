@@ -1,7 +1,7 @@
 extends Node
 
 var no_of_players: int = 0
-var no_of_humans: int = 1
+var no_of_humans: int = 0
 var difficulty: int = 2
 var current_level: int = 0
 var players: Array = []
@@ -35,6 +35,9 @@ func create_level_array() -> void:
 	levels.append(track_5)
 
 func _init():
+	pass
+
+func create_players():
 	for i in range(0, no_of_humans):
 		var player = player_class.new(racers[i], i, false)
 		add_player(player)
