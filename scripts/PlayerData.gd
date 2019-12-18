@@ -62,6 +62,14 @@ func set_player_vehicle(new_vehicle) -> void:
 func get_player_vehicle() -> int:
 	return selected_vehicle
 
+func add_champ_points(points) -> void:
+	championship_points += points
+
+func get_champ_points() -> int:
+	return championship_points
+
+func reset_champ_points() -> void:
+	championship_points = 0
 
 # Lap related functions
 func set_no_of_waypoints(total_waypoints_in_lvl: int) -> void:

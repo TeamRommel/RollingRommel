@@ -111,7 +111,8 @@ func get_input(delta):
 		# Check where our nose is pointing. Forward direction (Vector2.RIGHT) is in relation to the object's orientation
 		forward_dir = Vector2.RIGHT
 		# Get target direction.
-		target_dir = position.direction_to(path[0]).rotated(-rotation)
+		if path.size() > 0:
+			target_dir = position.direction_to(path[0]).rotated(-rotation)
 		
 		# Check the angle between target dir and forward direction
 		angle_between = forward_dir.angle_to(target_dir) * (180/PI)
