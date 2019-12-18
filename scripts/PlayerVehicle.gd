@@ -54,7 +54,7 @@ func get_input(delta):
 		engine_power = 0
 	
 	# Apply nitro
-	if Input.is_action_pressed('action_%s_1' % (id + 1)):
+	if Input.is_action_pressed('action_1_%s' % (id + 1)):
 		if can_use_nitro:
 			will_use_nitro = true
 			
