@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/BaseVehicle.gd" type="Script" id=1]
 [ext_resource path="res://sprites/vehicles/tankBody_green_outline_shadow.png" type="Texture" id=2]
 [ext_resource path="res://sprites/vehicles/Tank3Body.png" type="Texture" id=3]
 [ext_resource path="res://sprites/vehicles/Tank3Gun.png" type="Texture" id=4]
-[ext_resource path="res://Sounds/TankSound.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
@@ -49,9 +48,6 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="NitroTimer" type="Timer" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = -30.0
-autoplay = true
 [connection signal="timeout" from="NitroTimer" to="." method="_on_NitroTimer_timeout"]
+
+
