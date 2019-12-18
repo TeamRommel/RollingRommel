@@ -1,10 +1,13 @@
 extends Control
 
 func _on_TextureButton_pressed():
-	get_tree().change_scene("res://scenes/GameScene.tscn")	
-
+	if($TextureRect/DesertRing.visible):
+		get_tree().change_scene("res://scenes/GameScene.tscn")	
+	elif($TextureRect/SingleRing.visible):
+		get_tree().change_scene("res://scenes/SingleRaceMenu.tscn")
 func _on_SingleGame_pressed():
-	get_tree().change_scene("res://scenes/SingleRaceMenu.tscn")
+	$TextureRect/SingleRing.visible = true
+	$TextureRect/DesertRing.visible = false
 
 func _on_DesertCup_pressed():
 	$TextureRect/SingleRing.visible = false
