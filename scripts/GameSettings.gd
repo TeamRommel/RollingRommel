@@ -2,6 +2,7 @@ extends Node
 
 var no_of_players: int = 0
 var no_of_humans: int = 1
+var difficulty: int = 2
 var current_level: int = 0
 var players: Array = []
 var player_class = preload("PlayerData.gd")
@@ -10,6 +11,7 @@ var gamemode: int = 1
 var track_results: Array = []
 var race_points: Array = [25, 15, 12, 10]
 var racers: Array = ["Monty", "George", "Erwin", "Ludwig"]
+var car_presets: Array = [[10000, 8500], [10000,10000], [12000, 12000]]
 
 var track_1 = preload("res://scenes/tracks/track_1.tscn")
 var track_2 = preload("res://scenes/tracks/track_2.tscn")
@@ -19,8 +21,11 @@ var track_5 = preload("res://scenes/tracks/track_5.tscn")
 var player_car = preload("res://scenes/PlayerVehicle.tscn")
 var cpu_car = preload("res://scenes/CPUVehicle.tscn")
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	create_level_array()
+	rng.randomize()
 
 func create_level_array() -> void:
 	levels.append(track_1)
@@ -34,7 +39,7 @@ func _init():
 		var player = player_class.new(racers[i], i, false)
 		add_player(player)
 	for i in range(no_of_humans, 4):
-		var cpu = player_class.new(racers[i], i, true)
+		var cpu = player_class.new(racers[i], i, true, rng.randi_range(200,250), car_presets[difficulty])
 		add_player(cpu)
 
 func complete_level():

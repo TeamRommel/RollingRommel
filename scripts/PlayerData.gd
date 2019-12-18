@@ -29,11 +29,14 @@ var friction_factor: float = 0.975
 signal lap_complete
 signal race_complete
 
-func _init(new_name="ACE", new_id=0, set_cpu=false, forw_turn_dist=250):
+func _init(new_name="ACE", new_id=0, set_cpu=false, forw_turn_dist=250, stats=[8000,8000]):
 	player_name = new_name
 	player_id = new_id
 	is_cpu = set_cpu
 	must_turn_dist_forward = forw_turn_dist
+	if is_cpu:
+		acceleration = stats[0]
+		forward_power = stats[1]
 
 func set_player_as_cpu() -> void:
 	is_cpu = true

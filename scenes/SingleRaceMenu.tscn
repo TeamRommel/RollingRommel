@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/SRMenu.gd" type="Script" id=1]
+[ext_resource path="res://images/Single-track-scene-image.jpg" type="Texture" id=2]
+[ext_resource path="res://images/track-1.png" type="Texture" id=3]
+[ext_resource path="res://images/track-2.png" type="Texture" id=4]
+[ext_resource path="res://images/track-3.png" type="Texture" id=5]
+[ext_resource path="res://images/track-4.png" type="Texture" id=6]
+[ext_resource path="res://images/track-5.png" type="Texture" id=7]
+
+[node name="SingleRaceMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.05267
+margin_top = 1.05267
+margin_right = -1.05267
+margin_bottom = 1.05267
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Track1" type="TextureButton" parent="TextureRect"]
+margin_left = 27.0
+margin_top = 391.947
+margin_right = 202.0
+margin_bottom = 487.947
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="Track2" type="TextureButton" parent="TextureRect"]
+margin_left = 207.947
+margin_top = 393.0
+margin_right = 381.947
+margin_bottom = 488.0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Track3" type="TextureButton" parent="TextureRect"]
+margin_left = 389.895
+margin_top = 393.053
+margin_right = 564.895
+margin_bottom = 490.053
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="Track4" type="TextureButton" parent="TextureRect"]
+margin_left = 572.0
+margin_top = 392.0
+margin_right = 750.0
+margin_bottom = 491.0
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Track5" type="TextureButton" parent="TextureRect"]
+margin_left = 755.053
+margin_top = 393.0
+margin_right = 931.053
+margin_bottom = 490.0
+texture_normal = ExtResource( 7 )
+expand = true
+[connection signal="pressed" from="TextureRect/Track1" to="." method="_on_Track1_pressed"]
+[connection signal="pressed" from="TextureRect/Track2" to="." method="_on_Track2_pressed"]
+[connection signal="pressed" from="TextureRect/Track3" to="." method="_on_Track3_pressed"]
+[connection signal="pressed" from="TextureRect/Track4" to="." method="_on_Track4_pressed"]
+[connection signal="pressed" from="TextureRect/Track5" to="." method="_on_Track5_pressed"]

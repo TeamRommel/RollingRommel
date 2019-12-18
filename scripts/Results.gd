@@ -11,13 +11,12 @@ func _ready():
 
 func _on_ContinueButton_pressed():
 	if GameSettings.gamemode == 0:
-		get_tree().change_scene("res://scenes/Results.tscn")
+		GameSettings.reset_cup_settings()
+		get_tree().change_scene("res://scenes/MainMenu.tscn")
+
 	elif GameSettings.gamemode == 1:
 		if GameSettings.current_level < GameSettings.levels.size():
 			get_tree().change_scene("res://scenes/GameScene.tscn")	
 		else:
+			GameSettings.reset_cup_settings()
 			get_tree().change_scene("res://scenes/MainMenu.tscn")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
