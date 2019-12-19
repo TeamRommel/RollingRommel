@@ -1,29 +1,40 @@
 extends Control
 
 func _ready():
-	$TextureRect/players1Ring.visible = true
-	$TextureRect/difficulty1Ring.visible = true
-	GameSettings.no_of_humans = 1
-	GameSettings.difficulty = 0
+	setup_switches()	
 
+func setup_switches():
+	match GameSettings.no_of_humans:
+		1:
+			$TextureRect/players1Ring.visible = true
+		2:
+			$TextureRect/players2Ring.visible = true
+
+	match GameSettings.difficulty:
+		0:
+			$TextureRect/difficulty1Ring.visible = true
+		1:
+			$TextureRect/difficulty2Ring.visible = true
+		2:
+			$TextureRect/difficulty3Ring.visible = true
+
+	match GameSettings.gamemode:
+		0:
+			$TextureRect/SingleRing.visible = true
+		1:
+			$TextureRect/DesertRing.visible = true
 
 func _on_TextureButton_pressed():
-<<<<<<< HEAD
+	GameSettings.create_players()
 	if($TextureRect/DesertRing.visible):
-		get_tree().change_scene("res://scenes/GameScene.tscn")	
+		get_tree().change_scene("res://scenes/ControlsMenu.tscn")
 	elif($TextureRect/SingleRing.visible):
 		get_tree().change_scene("res://scenes/SingleRaceMenu.tscn")
+
 func _on_SingleGame_pressed():
 	$TextureRect/SingleRing.visible = true
 	$TextureRect/DesertRing.visible = false
-=======
-	GameSettings.create_players()
-	get_tree().change_scene("res://scenes/GameScene.tscn")	
-
-func _on_SingleGame_pressed():
-	GameSettings.create_players()
-	get_tree().change_scene("res://scenes/SingleRaceMenu.tscn")
->>>>>>> d9dba0721f7cd8c465a3fb33114c699fad6b5a03
+	GameSettings.gamemode = 0
 
 func _on_DesertCup_pressed():
 	$TextureRect/SingleRing.visible = false

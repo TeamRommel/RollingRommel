@@ -64,6 +64,7 @@ func _on_ContinueButton_pressed():
 	else:
 		if GameSettings.gamemode == 0:
 			GameSettings.reset_cup_settings()
+			GameSettings.remove_players()
 			get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 		elif GameSettings.gamemode == 1:
@@ -71,5 +72,6 @@ func _on_ContinueButton_pressed():
 				get_tree().change_scene("res://scenes/GameScene.tscn")	
 			else:
 				GameSettings.reset_cup_settings()
+				GameSettings.remove_players()
 				get_tree().change_scene("res://scenes/MainMenu.tscn")
 

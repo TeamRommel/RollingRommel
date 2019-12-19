@@ -93,4 +93,5 @@ func _on_NitroTimer_timeout() -> void:
 func finish_race() -> void:
 	engine_power = 0
 	rotation = 0
+	set_applied_torque(0)
 	is_race_finished = true

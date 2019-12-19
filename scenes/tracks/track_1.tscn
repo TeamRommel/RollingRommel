@@ -42,19 +42,19 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 visible = false
 
 [node name="Waypoint00" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 499.307, 444.586 )
+position = Vector2( 499.307, 456.829 )
 
 [node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 141.013, 449.098 )
+position = Vector2( 244.402, 450.458 )
 area_id = 1
 
 [node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 51.6647, 355.237 )
+position = Vector2( 51.6647, 281.777 )
 rotation = 1.5708
 area_id = 2
 
 [node name="Waypoint03" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 57.0804, 145.857 )
+position = Vector2( 57.0804, 159.461 )
 rotation = 1.5708
 area_id = 3
 
@@ -63,21 +63,21 @@ position = Vector2( 165.381, 70.0464 )
 area_id = 4
 
 [node name="Waypoint05" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 730.347, 79.0721 )
+position = Vector2( 675.932, 85.874 )
 area_id = 5
 
 [node name="Waypoint06" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 859.405, 140.441 )
+position = Vector2( 868.928, 178.532 )
 rotation = 1.5708
 scale = Vector2( 1, 1.2 )
 area_id = 6
 
 [node name="Waypoint07" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 865.724, 368.775 )
+position = Vector2( 871.166, 307.558 )
 rotation = 1.5708
 scale = Vector2( 1, 1.2 )
 area_id = 7
 
 [node name="Waypoint08" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 728.543, 447.293 )
+position = Vector2( 706.777, 460.897 )
 area_id = 8

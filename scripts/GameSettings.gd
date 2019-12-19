@@ -1,13 +1,13 @@
 extends Node
 
 var no_of_players: int = 0
-var no_of_humans: int = 0
-var difficulty: int = 2
+var no_of_humans: int = 1
+var difficulty: int = 1
 var current_level: int = 0
 var players: Array = []
 var player_class = preload("PlayerData.gd")
 var levels: Array = []
-var gamemode: int = 1
+var gamemode: int = 0
 var track_results: Array = []
 var race_points: Array = [25, 15, 12, 10]
 var racers: Array = ["Monty", "George", "Erwin", "Ludwig"]
@@ -44,6 +44,11 @@ func create_players():
 	for i in range(no_of_humans, 4):
 		var cpu = player_class.new(racers[i], i, true, rng.randi_range(200,250), car_presets[difficulty])
 		add_player(cpu)
+
+func remove_players():
+	for player in players:
+		player.free()
+	players = []	
 
 func complete_level():
 	current_level += 1
