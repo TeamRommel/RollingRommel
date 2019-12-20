@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Rolling Rommel"
+config/name="Erwin and Monty's Desert Showdown"
 run/main_scene="res://scenes/Intro.tscn"
 config/icon="res://icon.png"
 

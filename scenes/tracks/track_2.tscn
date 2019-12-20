@@ -43,7 +43,7 @@ visible = false
 position = Vector2( 267, 430 )
 
 [node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 195.653, 447.571 )
+position = Vector2( 208.653, 446.571 )
 area_id = 1
 
 [node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]
@@ -69,11 +69,11 @@ position = Vector2( 464, 86 )
 area_id = 6
 
 [node name="Waypoint07" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 778, 83 )
+position = Vector2( 738, 84 )
 area_id = 7
 
 [node name="Waypoint08" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 884, 161 )
+position = Vector2( 884, 149 )
 rotation = 1.5708
 area_id = 8
 
@@ -82,7 +82,7 @@ position = Vector2( 785, 257 )
 area_id = 9
 
 [node name="Waypoint10" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 698, 355 )
+position = Vector2( 690, 337 )
 rotation = 1.5708
 area_id = 10
 

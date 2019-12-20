@@ -43,7 +43,7 @@ visible = false
 position = Vector2( 268, 464 )
 
 [node name="Waypoint01" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 232, 457 )
+position = Vector2( 242, 460 )
 area_id = 1
 
 [node name="Waypoint02" parent="WaypointContainer" instance=ExtResource( 4 )]
@@ -52,16 +52,16 @@ rotation = 1.5708
 area_id = 2
 
 [node name="Waypoint03" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 132, 136 )
+position = Vector2( 128, 155 )
 rotation = 1.5708
 area_id = 3
 
 [node name="Waypoint04" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 210, 85 )
+position = Vector2( 217, 81 )
 area_id = 4
 
 [node name="Waypoint05" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 703, 51 )
+position = Vector2( 667, 55 )
 area_id = 5
 
 [node name="Waypoint06" parent="WaypointContainer" instance=ExtResource( 4 )]
@@ -76,7 +76,7 @@ scale = Vector2( 0.8, 0.8 )
 area_id = 7
 
 [node name="Waypoint08" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 386, 189 )
+position = Vector2( 398, 189 )
 scale = Vector2( 1, 0.7 )
 area_id = 8
 
@@ -87,7 +87,7 @@ scale = Vector2( 1, 1.2 )
 area_id = 9
 
 [node name="Waypoint10" parent="WaypointContainer" instance=ExtResource( 4 )]
-position = Vector2( 727, 327 )
+position = Vector2( 674, 327 )
 scale = Vector2( 1, 0.8 )
 area_id = 10
 

@@ -9,8 +9,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if id == 0:
-		check_sliders()
+	check_sliders()
 	
 func check_sliders():
 	# Read values set on CarStats scene and adjust values accordingly
